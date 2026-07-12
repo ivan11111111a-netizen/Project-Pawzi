@@ -25,7 +25,7 @@
 .pic-one{
     height: calc(520px + 4vw);
     width: calc(520px + 4vw);
-    background: url('../infoimg/noroot.png') no-repeat center;
+    background: url('../assets/img/info/noroot.png') no-repeat center;
     background-size: cover;
     margin: auto;
 }
@@ -46,7 +46,7 @@
 .pic-two{
     height: calc(520px + 4vw);
     width: calc(520px + 4vw);
-    background: url('../infoimg/depositphotos_112599.jpg') no-repeat center;
+    background: url('../assets/img/info/depositphotos_112599.jpg') no-repeat center;
     background-size: cover;
     margin: auto;
 }

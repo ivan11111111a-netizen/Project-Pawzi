@@ -1,59 +1,64 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <title>О нас</title>
-    <link rel="stylesheet" href="css/info.css">
-    <script>
-        function sendData(event) {
-               event.preventDefault(); // Отменяем стандартное поведение формы
-   
-               const textInput = document.getElementById('textInput').value;
-   
-               // Замените 'entry.XXXXXXX' на ваш идентификатор поля
-               const formData = new FormData();
-               formData.append('entry.727567130', textInput); // Замените 'entry.XXXXXXX' на идентификатор вашего поля
-   
-               fetch('https://docs.google.com/forms/d/e/1FAIpQLSdPaJWjSPGWXFMILDB2QSlyWQp5AiL-g8t95Ayxm42Y1xDkSA/formResponse', {
-                   method: 'POST',
-                   body: formData,
-                   mode: 'no-cors' // Важно для отправки данных на Google Форму
-               })
-               
-               .then(response => {
-                   console.log('Успех:', response);
-                   alert('Данные успешно отправлены!');
-                   document.getElementById('textForm').reset(); // Очистить форму после отправки
-               })
-               .catch((error) => {
-                   console.error('Ошибка:', error);
-                   alert('Произошла ошибка при отправке данных.');
-               });
-           }
-           function getQueryParam(param) {
-               const urlParams = new URLSearchParams(window.location.search);
-               return urlParams.get(param);
-           }
-   
-           document.addEventListener('DOMContentLoaded', () => {
-               const category = getQueryParam('category');
-               if (category) {
-                   filterByCategory(category);
-               }
-           
-           window.onscroll = function() {
-                   const button = document.getElementById("scrollToTopBtn");
-                   if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-                       button.style.display = "block"; // Показываем кнопку
-                   } else {
-                       button.style.display = "none"; // Скрываем кнопку
-                   }
-               };
-           });
-               function scrollToTop() {
-               window.scrollTo({ top: 0, behavior: 'smooth' });
-           }
+    <title>Информация о доставке</title>
+    <link rel="stylesheet" href="../css/delivery.css">
+<script>
+     function sendData(event) {
+            event.preventDefault(); // Отменяем стандартное поведение формы
 
-           function toggleDropdown() {
+            const textInput = document.getElementById('textInput').value;
+
+            // Замените 'entry.XXXXXXX' на ваш идентификатор поля
+            const formData = new FormData();
+            formData.append('entry.727567130', textInput); // Замените 'entry.XXXXXXX' на идентификатор вашего поля
+
+            fetch('https://docs.google.com/forms/d/e/1FAIpQLSdPaJWjSPGWXFMILDB2QSlyWQp5AiL-g8t95Ayxm42Y1xDkSA/formResponse', {
+                method: 'POST',
+                body: formData,
+                mode: 'no-cors' // Важно для отправки данных на Google Форму
+            })
+            
+            .then(response => {
+                console.log('Успех:', response);
+                alert('Данные успешно отправлены!');
+                document.getElementById('textForm').reset(); // Очистить форму после отправки
+            })
+            .catch((error) => {
+                console.error('Ошибка:', error);
+                alert('Произошла ошибка при отправке данных.');
+            });
+        }
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const category = getQueryParam('category');
+            if (category) {
+                filterByCategory(category);
+            }
+        
+        window.onscroll = function() {
+                const button = document.getElementById("scrollToTopBtn");
+                if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                    button.style.display = "block"; // Показываем кнопку
+                } else {
+                    button.style.display = "none"; // Скрываем кнопку
+                }
+            };
+        });
+            function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function selectSection(section) {
+        document.getElementById("dropdown-button").textContent = section;
+        document.getElementById("dropdown-content").classList.remove("show");
+    }
+
+    function toggleDropdown() {
         document.getElementById("dropdown-content").classList.toggle("show");
     }
 
@@ -109,15 +114,15 @@
             }
         }
     }
-   </script>
-   </head>
-   <body>
+</script>
+</head>
+<body>
     <div class="boody">
         <header>
            <div class="start"><div class="logoback"><div></div></div><h1>PAWZI.AR</h1></div>
             <nav>
                 <ul class="pc">
-                    <li><a class="home" href="html.html">Главная</a></li>
+                    <li><a class="home" href="index.html">Главная</a></li>
                     <li><a class="catalog" href="catalog.html">Каталог</a></li>
                     <li><a class="location" href="location.html">Где купить?</a></li>
                     <li><a class="delivery" href="delivery.html">Доставка</a></li>
@@ -129,7 +134,7 @@
                     <li><div class="dropdown">
                         <button id="dropdown-button" onclick="toggleDropdown()">Выберите раздел</button>
                         <div id="dropdown-content" class="dropdown-content">
-                            <a href="html.html" onclick="selectSection('Главная')">Главная</a>
+                            <a href="index.html" onclick="selectSection('Главная')">Главная</a>
                             <a href="catalog.html" onclick="selectSection('Каталог')">Каталог</a>
                             <a href="location.html" onclick="selectSection('Где купить?')">Где купить?</a>
                             <a href="delivery.html" onclick="selectSection('Доставка')">Доставка</a>
@@ -142,74 +147,91 @@
         </header>
         <div class="helper"></div>
         <button id="scrollToTopBtn" class="scroll-to-top" onclick="scrollToTop()"><em>Наверх</em><span>👆</span></button>
-<h2 class="intro">О нас</h2>
-    <div class="all">
-        <div class="text">
-    <div class="container">
-        <div class="section">
-            <div class="background lap">
-                <img src="i.webp">
-            </div>
-            <div class="background lap2">
-                <img src="i.webp">
-            </div>
-            <h3>Наша компания</h3>
-            <p>Мы — команда профессионалов, стремящихся предоставить вам лучшие товары и услуги. Наша компания была основана в 2020 году с целью обеспечения высококачественной продукции по доступным ценам.</p>
+    <h2 class="intro">Информация о доставке</h2>
+         <div class="all">
+            <div class="text">
+    <div class="section">
+        <div class="background lap">
+            <img src="../assets/img/icon.webp">
         </div>
-        
-        <div class="section">
-            <div class="background lap">
-                <img src="i.webp">
-            </div>
-            <div class="background lap2">
-                <img src="i.webp">
-            </div>
-            <h3>Наша миссия</h3>
-            <p>Наша миссия — удовлетворить потребности наших клиентов, предлагая только качественные товары и индивидуальный подход. Мы постоянно работаем над улучшением нашего сервиса и расширением ассортимента.</p>
+        <div class="background lap2">
+            <img src="../assets/img/icon.webp">
         </div>
-        
-        <div class="section">
-            <div class="background lap">
-                <img src="i.webp">
-            </div>
-            <div class="background lap2">
-                <img src="i.webp">
-            </div>
-            <h3>Почему выбирают нас</h3>
-            <p>Мы гордимся тем, что предлагаем:</p>
+            <h3>Доступные способы доставки</h3>
+            <p>Мы предлагаем несколько способов доставки для вашего удобства:</p>
             <ul>
-                <li>Высокое качество продукции</li>
-                <li>Конкурентные цены</li>
-                <li>Отличное обслуживание клиентов</li>
-                <li>Быструю доставку</li>
+                <li>Курьерская доставка</li>
+                <li>Самовывоз из магазина</li>
+                <li>Доставка почтой</li>
+            </ul>
+        </div>
+        <div class="section">
+            <div class="background lap">
+                <img src="../assets/img/icon.webp">
+            </div>
+            <div class="background lap2">
+                <img src="../assets/img/icon.webp">
+            </div>
+            <h3>Стоимость доставки</h3>
+            <p>Стоимость доставки зависит от выбранного вами способа:</p>
+            <ul>
+                <li>Курьерская доставка: 300 руб.</li>
+                <li>Самовывоз: бесплатно</li>
+                <li>Доставка почтой: 150 руб.</li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <div class="background lap">
+                <img src="../assets/img/icon.webp">
+            </div>
+            <div class="background lap2">
+                <img src="../assets/img/icon.webp">
+            </div>
+            <h3>Сроки доставки</h3>
+            <p>Сроки доставки зависят от вашего местоположения и способа доставки:</p>
+            <ul>
+                <li>Курьерская доставка: 1-3 рабочих дня</li>
+                <li>Самовывоз: в день заказа</li>
+                <li>Доставка почтой: 3-7 рабочих дней</li>
             </ul>
         </div>
 
         <div class="section">
             <div class="background lap">
-                <img src="i.webp">
+                <img src="../assets/img/icon.webp">
             </div>
             <div class="background lap2">
-                <img src="i.webp">
+                <img src="../assets/img/icon.webp">
+            </div>
+            <h3>Как оформить заказ</h3>
+            <p>Чтобы оформить заказ, выберите товары и добавьте их в корзину. Затем перейдите к оформлению заказа и выберите удобный для вас способ доставки.</p>
+        </div>
+
+        <div class="section">
+            <div class="background lap">
+                <img src="../assets/img/icon.webp">
+            </div>
+            <div class="background lap2">
+                <img src="../assets/img/icon.webp">
             </div>
             <h3>Контактная информация</h3>
-            <p>Если у вас есть вопросы или предложения, пожалуйста, свяжитесь с нами:</p>
+            <p>Если у вас есть вопросы, пожалуйста, свяжитесь с нашей службой поддержки:</p>
             <p>Email: support@example.com</p>
             <p>Телефон: +7 (123) 456-78-90</p>
         </div>
 
-        <a class="perehod" href="catalog.html">Вернуться в каталог товаров</a>
-    </div>
-        </div>
+        <a class="perehod" href="catalog.html">Вернуться в каталог товаров</a></div>
         <div class="images">
-        <div class="image-one one">
-            <div class="pic-one one"></div>
-        </div>
-        <div class="image-two two">
-            <div class="pic-two two"></div>
-        </div>
-        </div>
+            <div class="image-one one">
+                <div class="pic-one one"></div>
+            </div>
+            <div class="image-two two">
+                <div class="pic-two two"></div>
+            </div>
+            </div>
     </div>
+
     <div class="navigation-panel">
         <div class="panel">
             <h3>Навигация</h3>
@@ -272,8 +294,8 @@
         </div>
     </div>
     <div class="information">
-        <img class="whatsapp" src="free-icon-whatsapp-3670051.png" alt="WhatsApp">
+        <img class="whatsapp" src="../assets/img/whatsapp-icon.png" alt="WhatsApp">
     </div> 
-    </div>
-    </body>
-    </html>
+</div>
+</body>
+</html>

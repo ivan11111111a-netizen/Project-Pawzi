@@ -109,16 +109,41 @@
     </script>
     <style>
         .all {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
             background-color: rgb(255, 255, 255);
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     font-size: 1.2em;
-    text-align: left;
-    min-height: 400px;
+    text-align: center;
+    min-height: 1000px;
     width: auto;
     margin: 40px auto 60px auto;
     padding: 30px;
-    line-height: 1.5;
+        }
+        .all div{
+            margin: -60px auto 10px auto;
+        }
+        span{
+            font-weight: bold;
+            line-height: 4;
+        }
+        .container{
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+            border-bottom: 1px solid black;
+            background-color: rgb(255, 255, 255);
+            padding-bottom: 20px;
+        }
+        .container div{
+            margin: 10px auto;
+            padding: 0 10px;
+        }
+        .little{
+            font-size: 0.7em;
         }
 
 
@@ -493,7 +518,7 @@ textarea::placeholder{
             <div class="start"><div class="logoback"><div></div></div><h1>PAWZI.AR</h1></div>
              <nav>
                  <ul class="pc">
-                     <li><a class="home" href="html.html">Главная</a></li>
+                     <li><a class="home" href="index.html">Главная</a></li>
                      <li><a class="catalog" href="catalog.html">Каталог</a></li>
                      <li><a class="location" href="location.html">Где купить?</a></li>
                      <li><a class="delivery" href="delivery.html">Доставка</a></li>
@@ -505,7 +530,7 @@ textarea::placeholder{
                      <li><div class="dropdown">
                          <button id="dropdown-button" onclick="toggleDropdown()">Выберите раздел</button>
                          <div id="dropdown-content" class="dropdown-content">
-                             <a href="html.html" onclick="selectSection('Главная')">Главная</a>
+                             <a href="index.html" onclick="selectSection('Главная')">Главная</a>
                              <a href="catalog.html" onclick="selectSection('Каталог')">Каталог</a>
                              <a href="location.html" onclick="selectSection('Где купить?')">Где купить?</a>
                              <a href="delivery.html" onclick="selectSection('Доставка')">Доставка</a>
@@ -519,10 +544,27 @@ textarea::placeholder{
          <div class="helper"></div>
          <button id="scrollToTopBtn" class="scroll-to-top" onclick="scrollToTop()"><em>Наверх</em><span>👆</span></button>
          <div class="intro">
-             <h2 class="main">Социальные сети</h2>
+             <h2 class="main">Политика доставки</h2>
          </div>
          <div class="all">
-            
+            <div><span>Retiro en Pick Up Point:</span><br>
+Retiro por Fabrica Growis - LOMAS DEL MIRADOR. Av gral enrique mosconi 1821. De Lunes a Viernes de 9:00 a 16:30 HS. Por favor tené a mano el num de compra y dni. TENÉS 10 DÍAS PARA RETIRAR EL PEDIDO, caso contrario el paquete vuelve a nuestra oficina central para coordinar envió CON cargo.</div>
+        <div><span>Envios:<br>
+            Envios a domicilio</span><br>
+            Podemos enviar tu pedido a domicilio mediante OCA. Una vez retirado el pedido de nuestro deposito por la agencia de envíos, el mismo llegara dentro de los 3 - 10 días hábiles siguientes. (Pueden verse demorados los tiempos de entrega debido al COVID19)</div> 
+
+<div class="container"><div><span>DOMICILIO</span><br>
+    Se puede hacer el seguimiento del mismo mediante un link que se envía al mail. En caso de no encontrarse a la hora de la visita se dejara un aviso, y se realizara una segunda visita. Si nuevamente no hay nadie en el domicilio, el paquete volverá a nuestra oficina por falta de recepción, y el cliente deberá abonar nuevamente el envio.</div>
+<div><span>OCA SUCURSAL</span><br>
+    Se puede hacer el seguimiento del mismo mediante un link que se envía al mail. Una vez que el paquete arriba a la sucursal elegida, se disponen 5 días hábiles para su retiro. Caso contrario el paquete vuelve a Growis por falta de retiro. De requerir nuevo envío el costo del mismo será a cargo del cliente.</div>
+<div><span>PICK IT</span><br>
+    Se puede hacer el seguimiento del mismo mediante un link que se envía al mail. Una vez que el paquete arriba a la sucursal elegida, se disponen 10 días hábiles para su retiro. Caso contrario el paquete vuelve a Growis por falta de retiro. De requerir nuevo envío el costo del mismo será a cargo del cliente.</div>
+</div>
+<div class="little">*Dias de despacho*<br>
+
+    Pickit se despacha los lunes y miércoles, por lo cual los pedidos ingresados desde el martes hasta el jueves serán despachados los lunes, y los pedidos ingresados desde el viernes hasta el martes serán despachados el miércoles.<br>
+    
+    Oca se despacha los miércoles y viernes, por lo cual los pedidos ingresados de viernes a martes son despachados los miércoles, y los pedidos ingresados desde el miércoles al jueves son despachados los viernes.</div>
     </div>
     <div class="navigation-panel">
         <div class="panel">
@@ -586,7 +628,7 @@ textarea::placeholder{
         </div>
     </div>
     <div class="information">
-        <img class="whatsapp" src="free-icon-whatsapp-3670051.png" alt="WhatsApp">
+        <img class="whatsapp" src="../assets/img/whatsapp-icon.png" alt="WhatsApp">
     </div>
     </div>
     </body>

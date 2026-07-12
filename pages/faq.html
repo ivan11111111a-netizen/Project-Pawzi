@@ -108,46 +108,49 @@
      }
     </script>
     <style>
-        .all {
+        .faq-section {
+            width: 60%;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .faq-question {
+            background-color: rgb(137, 93, 150);
+            border: none;
+            padding: 15px;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            outline: none;
+            transition: color 0.3s;
+            margin-bottom: 5px;
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
             align-items: center;
-            justify-content: space-around;
-            background-color: rgb(255, 255, 255);
+            color: rgb(255, 255, 255);
     border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    font-size: 1.2em;
-    text-align: center;
-    min-height: 1000px;
-    width: auto;
-    margin: 40px auto 60px auto;
-    padding: 30px;
-        }
-        .all div{
-            margin: -60px auto 10px auto;
-        }
-        span{
-            font-weight: bold;
-            line-height: 4;
-        }
-        .container{
-            display: flex;
-            align-items: baseline;
-            justify-content: center;
-            border-bottom: 1px solid black;
-            background-color: rgb(255, 255, 255);
-            padding-bottom: 20px;
-        }
-        .container div{
-            margin: 10px auto;
-            padding: 0 10px;
-        }
-        .little{
-            font-size: 0.7em;
+    cursor: pointer;
+    font-size: 1em;
         }
 
+        .faq-question:hover {
+            color: rgb(84, 177, 132);
+        }
 
+        .faq-answer {
+            padding: 15px;
+            display: none;
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 1px solid black;
+            margin-bottom: 10px;
+            line-height: 1.5;
+            border-radius: 10px;
+        }
+        button div{
+            padding: 10px 20px;
+        }
 
+        
         .intro {
     text-align: center;
     margin: 20px 0;
@@ -509,128 +512,152 @@ textarea::placeholder{
                         bottom: 15px;
                     }
                 }
-
     </style>
-    </head>
-    <body>
-    <div class="boody">
-        <header>
-            <div class="start"><div class="logoback"><div></div></div><h1>PAWZI.AR</h1></div>
-             <nav>
-                 <ul class="pc">
-                     <li><a class="home" href="html.html">Главная</a></li>
-                     <li><a class="catalog" href="catalog.html">Каталог</a></li>
-                     <li><a class="location" href="location.html">Где купить?</a></li>
-                     <li><a class="delivery" href="delivery.html">Доставка</a></li>
-                     <li><a class="opt" href="opt.html">Опт</a></li>
-                     <li><a class="info" href="info.html">О нас</a></li>
-                 </ul>
-                 <ul class="mob">
-                     <li>Выберете раздел:</li>
-                     <li><div class="dropdown">
-                         <button id="dropdown-button" onclick="toggleDropdown()">Выберите раздел</button>
-                         <div id="dropdown-content" class="dropdown-content">
-                             <a href="html.html" onclick="selectSection('Главная')">Главная</a>
-                             <a href="catalog.html" onclick="selectSection('Каталог')">Каталог</a>
-                             <a href="location.html" onclick="selectSection('Где купить?')">Где купить?</a>
-                             <a href="delivery.html" onclick="selectSection('Доставка')">Доставка</a>
-                             <a href="opt.html" onclick="selectSection('Опт')">Опт</a>
-                             <a href="info.html" onclick="selectSection('О нас')">О нас</a>
-                         </div>
-                     </div></li>
-                 </ul>
-             </nav>
-         </header>
-         <div class="helper"></div>
-         <button id="scrollToTopBtn" class="scroll-to-top" onclick="scrollToTop()"><em>Наверх</em><span>👆</span></button>
-         <div class="intro">
-             <h2 class="main">Политика доставки</h2>
-         </div>
-         <div class="all">
-            <div><span>Retiro en Pick Up Point:</span><br>
-Retiro por Fabrica Growis - LOMAS DEL MIRADOR. Av gral enrique mosconi 1821. De Lunes a Viernes de 9:00 a 16:30 HS. Por favor tené a mano el num de compra y dni. TENÉS 10 DÍAS PARA RETIRAR EL PEDIDO, caso contrario el paquete vuelve a nuestra oficina central para coordinar envió CON cargo.</div>
-        <div><span>Envios:<br>
-            Envios a domicilio</span><br>
-            Podemos enviar tu pedido a domicilio mediante OCA. Una vez retirado el pedido de nuestro deposito por la agencia de envíos, el mismo llegara dentro de los 3 - 10 días hábiles siguientes. (Pueden verse demorados los tiempos de entrega debido al COVID19)</div> 
+</head>
+<body>
+<div class="boody">
+    <header>
+        <div class="start"><div class="logoback"><div></div></div><h1>PAWZI.AR</h1></div>
+         <nav>
+             <ul class="pc">
+                 <li><a class="home" href="index.html">Главная</a></li>
+                 <li><a class="catalog" href="catalog.html">Каталог</a></li>
+                 <li><a class="location" href="location.html">Где купить?</a></li>
+                 <li><a class="delivery" href="delivery.html">Доставка</a></li>
+                 <li><a class="opt" href="opt.html">Опт</a></li>
+                 <li><a class="info" href="info.html">О нас</a></li>
+             </ul>
+             <ul class="mob">
+                 <li>Выберете раздел:</li>
+                 <li><div class="dropdown">
+                     <button id="dropdown-button" onclick="toggleDropdown()">Выберите раздел</button>
+                     <div id="dropdown-content" class="dropdown-content">
+                         <a href="index.html" onclick="selectSection('Главная')">Главная</a>
+                         <a href="catalog.html" onclick="selectSection('Каталог')">Каталог</a>
+                         <a href="location.html" onclick="selectSection('Где купить?')">Где купить?</a>
+                         <a href="delivery.html" onclick="selectSection('Доставка')">Доставка</a>
+                         <a href="opt.html" onclick="selectSection('Опт')">Опт</a>
+                         <a href="info.html" onclick="selectSection('О нас')">О нас</a>
+                     </div>
+                 </div></li>
+             </ul>
+         </nav>
+     </header>
+     <div class="helper"></div>
+     <button id="scrollToTopBtn" class="scroll-to-top" onclick="scrollToTop()"><em>Наверх</em><span>👆</span></button>
+     <div class="intro">
+         <h2 class="main">Часто задаваемые вопросы</h2>
+     </div>
+<div class="faq-section">
+    <button class="faq-question"><div>¿Qué snack es ideal para mi mascota?</div><div>👇</div></button>
+    <div class="faq-answer">
+        <p><span>PREMIO NUTRITIVO</span><br>
+            Hechos con mucho amor, especialmente para mimar y premiar a tu Perri Amigo de una manera saludable! Nuestros Premios Nutritivos funcionan como un mimo qué fortalece su bienestar y vinculo de amor a través de nuestros snacks.<br><br>
+            
+            <span>TRAINING NUTRITIVO</span><br>
+            Entrenamientos más felices junto a Growis. ¡Motiva el aprendizaje y premia a tu perri amigo de una manera rica, natural y nutritiva! Una actividad recreativa ligada a una recompensa nutritiva de la mano de nuestros Training Snack, es una gran opcion para motivar los entrenamientos y que sean más felices.<br><br>
+            
+            <span>DENTAL NUTRITIVO</span><br>
+            Bocas más sanas. ¡Mejora, cuida y fortalece la salud bucal de dientes, encías y ligamentos de una forma 100% natural! Al proporcionar a tu perriamigo las herramientas adecuadas desde una edad temprana, podes evitar hábitos de masticación inadecuados, lograr liberar el estrés, estimular las encias, ligamentos y musculos eliminando el sarro.<br><br>
+            
+            <span>CRUNCH NUTRITIVO</span><br>
+            Pelaje más brillante. ¡Aportan proteínas aportan proteínas y vitaminas esenciales para complementar la dieta diaria! Ideal para los campeones que necesitan un extra de energía o perriamigas en etapa de lactancia.</p>
+    </div>
 
-<div class="container"><div><span>DOMICILIO</span><br>
-    Se puede hacer el seguimiento del mismo mediante un link que se envía al mail. En caso de no encontrarse a la hora de la visita se dejara un aviso, y se realizara una segunda visita. Si nuevamente no hay nadie en el domicilio, el paquete volverá a nuestra oficina por falta de recepción, y el cliente deberá abonar nuevamente el envio.</div>
-<div><span>OCA SUCURSAL</span><br>
-    Se puede hacer el seguimiento del mismo mediante un link que se envía al mail. Una vez que el paquete arriba a la sucursal elegida, se disponen 5 días hábiles para su retiro. Caso contrario el paquete vuelve a Growis por falta de retiro. De requerir nuevo envío el costo del mismo será a cargo del cliente.</div>
-<div><span>PICK IT</span><br>
-    Se puede hacer el seguimiento del mismo mediante un link que se envía al mail. Una vez que el paquete arriba a la sucursal elegida, se disponen 10 días hábiles para su retiro. Caso contrario el paquete vuelve a Growis por falta de retiro. De requerir nuevo envío el costo del mismo será a cargo del cliente.</div>
+    <button class="faq-question"><div>¿Cómo comienzo a incorporar los snacks growis en la dieta de mi mascota?</div><div>👇</div></button>
+    <div class="faq-answer">
+        <p>Al incorporar un nuevo snack a la dieta de nuestras mascotas, debemos asegurarnos de que sea de una forma cuidada y gradual para no generar cambios bruscos en la misma. Nuestro consejo, es que comiences incorporando una unidad de alguno de nuestros snacks como pueden ser los chips, aireados, palitos, mini hígados. Trozados en pedacitos o mezclados en su comida, así conseguiremos que tu perriamigo vaya incorporando sabores poco a poco, y su organismo pueda ir asimilando el nuevo alimento. Esta opción es ideal para perros con un sistema gástrico delicado. Otra manera sería darle solo 1 snack por día durante una semana. Siempre recomendamos que las primeras veces el consumo del snack sea bajo supervisión del humano responsable para que puedan asegurarse de que la mascota lo mastica sin problema alguno.</p>
+    </div>
+
+    <button class="faq-question"><div>¿Los snacks son aptos para perros con insuficiencia renal?</div><div>👇</div></button>
+    <div class="faq-answer">
+        <p>Es una consulta frecuente. La respuesta es sí, se le pueden suministrar Growis a perros con afecciones renales. Uno de los nutrientes a cuidar en estos casos es el Sodio, importante en el equilibrio intra y extracelular, en los tejidos muscular y nervioso. Si bien los requerimientos son bajos, se debe evitar el exceso de Sodio, ya que las cantidades superiores a las requeridas son excretadas por la orina luego del proceso de filtración por los riñones. En nuestros productos no existe la inclusión de Cloruro de Sodio, como si sucede en algunos alimentos para mascotas. En nuestro caso su presencia es la natural, presente en los tejidos animales de cada producto. El nivel de Proteínas es el otro factor nutricional que limitar. El nivel de proteínas de las golosinas, si bien es alto, cuenta con la ventaja de ser un complemento alimenticio y un entretenimiento, por lo cual, su consumo resulta ser hasta diez veces más lento que el de los alimentos, por lo cual su proceso digestivo también insume mayor tiempo, con más liberación y absorción de aminoácidos y menor trabajo renal. Los productos Growis, resultan beneficiosos frente a afecciones renales, cardiacas y de diabetes, solo debemos mantener un saludable equilibrio con la dieta total diaria, sin provocar cambios bruscos. Como siempre sugerimos consulte con su profesional veterinario las cantidades a suministrar a sus mascotas.</p>
+    </div>
+
+    <button class="faq-question"><div>¿Cuánta vida útil tienen los snacks?</div><div>👇</div></button>
+    <div class="faq-answer">
+        <p>Los snacks tienen una vida útil de 2 años, siempre y cuando los mismos no hayan estado en contacto con la saliva de la mascota, y sean conservados en un espacio seco y libre de humedad para su correcta conservación. Los paquetes son una gran opción para conservar los snacks en correctas condiciones, los mismos son zipper oddor free y resguardan el producto de humedad y la intemperie, a demás de que al guardarlos aíslan el olor de los snacks. En caso de tirar el paquete y no saber cómo guardarlos, nuestra recomendación es conservarlos en un túper limpio y seco en algún lugar libre de humedad. Así se podrá mantener correctamente el estado de deshidratado y evitaremos que bacterias y microorganismos se reproduzcan echando a perder el snack.</p>
+    </div>
+
+    <button class="faq-question"><div>¿Por qué son absolutamente naturales?</div><div>👇</div></button>
+    <div class="faq-answer">
+        <p>¡Nuestros snacks deshidratados masticables no contienen ningún tipo de agregado! Los mismos no son intervenidos por ningún tipo de químico, conservante, aditivo, aromatizante o saborizante, simplemente se deshidratan con hornos de alta tecnología, única en su tipo, que nos permite que los productos liberen humedad, y conserven los nutrientes esenciales de cada menudencia de manera natural. El proceso cuenta con varios puntos de control y seguimiento, para conseguir así, un snack nutritivo, rico en fibras y proteínas que conserve la forma y el olor que despierta en cada mascota su instinto canino.</p>
+    </div>
+
 </div>
-<div class="little">*Dias de despacho*<br>
+<div class="navigation-panel">
+    <div class="panel">
+        <h3>Навигация</h3>
+        <ul>
+            <li><a href="faq.html">Часто задаваемые вопросы</a></li>
+            <li><a href="delivery-policy.html">Политика доставки</a></li>
+            <li><a href="return-policy.html">Политика обмена и возврата</a></li>
+        </ul>
+    </div>
+    <div class="panel">
+        <h3>Связаться с нами</h3>
+        <ul class="spec">
+            <li>
+                121212132323323
+            </li>
+            <li>
+                ayuwauvdawkdadkhabdaw
+            </li>
+            <li>
+                khasdakhabdbhadjhd
+            </li>
+        </ul>
+    </div>
+    <div class="panel">
+        <h3>Способы оплаты</h3>
+        <div class="pay">
+            <img src="pay\visa@2x.png" alt="">
+            <img src="pay\visadebit@2x.png" alt="">
+            <img src="pay\mastercard@2x.png" alt="">
+            <img src="pay\maestro@2x.png" alt="">
+            <img src="pay\cabal@2x.png" alt="">
+            <img src="pay\cabaldebit@2x.png" alt="">
+            <img src="pay\amex@2x.png" alt="">
+            <img src="pay\argencard@2x.png" alt="">
+            <img src="pay\custom@2x.png" alt="">
+            <img src="pay\cencosud@2x.png" alt="">
+            <img src="pay\pagofacil@2x.png" alt="">
+            <img src="pay\diners@2x.png" alt="">
+            <img src="pay\rapipago@2x.png" alt="">
+            <img src="pay\tarjeta-shopping@2x.png" alt="">
+            <img src="pay\tarjeta-naranja@2x.png" alt="">
 
-    Pickit se despacha los lunes y miércoles, por lo cual los pedidos ingresados desde el martes hasta el jueves serán despachados los lunes, y los pedidos ingresados desde el viernes hasta el martes serán despachados el miércoles.<br>
-    
-    Oca se despacha los miércoles y viernes, por lo cual los pedidos ingresados de viernes a martes son despachados los miércoles, y los pedidos ingresados desde el miércoles al jueves son despachados los viernes.</div>
+        </div>
+        <h3>Способы доставки</h3>
+        <img class="loc" src="pay\1211@2x.png">
     </div>
-    <div class="navigation-panel">
-        <div class="panel">
-            <h3>Навигация</h3>
-            <ul>
-                <li><a href="faq.html">Часто задаваемые вопросы</a></li>
-                <li><a href="delivery-policy.html">Политика доставки</a></li>
-                <li><a href="return-policy.html">Политика обмена и возврата</a></li>
-            </ul>
-        </div>
-        <div class="panel">
-            <h3>Связаться с нами</h3>
-            <ul class="spec">
-                <li>
-                    121212132323323
-                </li>
-                <li>
-                    ayuwauvdawkdadkhabdaw
-                </li>
-                <li>
-                    khasdakhabdbhadjhd
-                </li>
-            </ul>
-        </div>
-        <div class="panel">
-            <h3>Способы оплаты</h3>
-            <div class="pay">
-                <img src="pay\visa@2x.png" alt="">
-                <img src="pay\visadebit@2x.png" alt="">
-                <img src="pay\mastercard@2x.png" alt="">
-                <img src="pay\maestro@2x.png" alt="">
-                <img src="pay\cabal@2x.png" alt="">
-                <img src="pay\cabaldebit@2x.png" alt="">
-                <img src="pay\amex@2x.png" alt="">
-                <img src="pay\argencard@2x.png" alt="">
-                <img src="pay\custom@2x.png" alt="">
-                <img src="pay\cencosud@2x.png" alt="">
-                <img src="pay\pagofacil@2x.png" alt="">
-                <img src="pay\diners@2x.png" alt="">
-                <img src="pay\rapipago@2x.png" alt="">
-                <img src="pay\tarjeta-shopping@2x.png" alt="">
-                <img src="pay\tarjeta-naranja@2x.png" alt="">
+    <div class="panel v">
+        <h3>Информационный бюллетень</h3>
+        <form id="textForm" onsubmit="sendData(event)">
+            <textarea id="textInput" rows="4" cols="50" placeholder="YOUR EMAIL..."></textarea><br>
+            <button id="textInputt" type="submit">Отправить</button>
+        </form>
+    </div>
+    <div class="panel">
+        <h3>Дополнительная информация</h3>
+        <ul>
+            <li><a href="social-media.html">Социальные сети</a></li>
+            <li><a href="security-certification.html">Безопасность и сертификация</a></li>
+        </ul>
+    </div>
+</div>
+<div class="information">
+    <img class="whatsapp" src="../assets/img/whatsapp-icon.png" alt="WhatsApp">
+</div>
+</div>
+<script>
+    document.querySelectorAll('.faq-question').forEach(button => {
+        button.addEventListener('click', () => {
+            const answer = button.nextElementSibling;
+            answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+        });
+    });
+</script>
 
-            </div>
-            <h3>Способы доставки</h3>
-            <img class="loc" src="pay\1211@2x.png">
-        </div>
-        <div class="panel v">
-            <h3>Информационный бюллетень</h3>
-            <form id="textForm" onsubmit="sendData(event)">
-                <textarea id="textInput" rows="4" cols="50" placeholder="YOUR EMAIL..."></textarea><br>
-                <button id="textInputt" type="submit">Отправить</button>
-            </form>
-        </div>
-        <div class="panel">
-            <h3>Дополнительная информация</h3>
-            <ul>
-                <li><a href="social-media.html">Социальные сети</a></li>
-                <li><a href="security-certification.html">Безопасность и сертификация</a></li>
-            </ul>
-        </div>
-    </div>
-    <div class="information">
-        <img class="whatsapp" src="free-icon-whatsapp-3670051.png" alt="WhatsApp">
-    </div>
-    </div>
-    </body>
-    </html>
-
+</body>
+</html>

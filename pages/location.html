@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <title>Информация о доставке</title>
-    <link rel="stylesheet" href="css/delivery.css">
-<script>
-     function sendData(event) {
+    <title>Где купить</title>
+    <link rel="stylesheet" href="../css/location.css">
+    <script>
+        function sendData(event) {
             event.preventDefault(); // Отменяем стандартное поведение формы
 
             const textInput = document.getElementById('textInput').value;
@@ -53,12 +53,7 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function selectSection(section) {
-        document.getElementById("dropdown-button").textContent = section;
-        document.getElementById("dropdown-content").classList.remove("show");
-    }
-
-    function toggleDropdown() {
+        function toggleDropdown() {
         document.getElementById("dropdown-content").classList.toggle("show");
     }
 
@@ -114,7 +109,7 @@
             }
         }
     }
-</script>
+    </script>
 </head>
 <body>
     <div class="boody">
@@ -122,7 +117,7 @@
            <div class="start"><div class="logoback"><div></div></div><h1>PAWZI.AR</h1></div>
             <nav>
                 <ul class="pc">
-                    <li><a class="home" href="html.html">Главная</a></li>
+                    <li><a class="home" href="index.html">Главная</a></li>
                     <li><a class="catalog" href="catalog.html">Каталог</a></li>
                     <li><a class="location" href="location.html">Где купить?</a></li>
                     <li><a class="delivery" href="delivery.html">Доставка</a></li>
@@ -134,7 +129,7 @@
                     <li><div class="dropdown">
                         <button id="dropdown-button" onclick="toggleDropdown()">Выберите раздел</button>
                         <div id="dropdown-content" class="dropdown-content">
-                            <a href="html.html" onclick="selectSection('Главная')">Главная</a>
+                            <a href="index.html" onclick="selectSection('Главная')">Главная</a>
                             <a href="catalog.html" onclick="selectSection('Каталог')">Каталог</a>
                             <a href="location.html" onclick="selectSection('Где купить?')">Где купить?</a>
                             <a href="delivery.html" onclick="selectSection('Доставка')">Доставка</a>
@@ -147,91 +142,12 @@
         </header>
         <div class="helper"></div>
         <button id="scrollToTopBtn" class="scroll-to-top" onclick="scrollToTop()"><em>Наверх</em><span>👆</span></button>
-    <h2 class="intro">Информация о доставке</h2>
-         <div class="all">
-            <div class="text">
-    <div class="section">
-        <div class="background lap">
-            <img src="i.webp">
-        </div>
-        <div class="background lap2">
-            <img src="i.webp">
-        </div>
-            <h3>Доступные способы доставки</h3>
-            <p>Мы предлагаем несколько способов доставки для вашего удобства:</p>
-            <ul>
-                <li>Курьерская доставка</li>
-                <li>Самовывоз из магазина</li>
-                <li>Доставка почтой</li>
-            </ul>
-        </div>
-        <div class="section">
-            <div class="background lap">
-                <img src="i.webp">
-            </div>
-            <div class="background lap2">
-                <img src="i.webp">
-            </div>
-            <h3>Стоимость доставки</h3>
-            <p>Стоимость доставки зависит от выбранного вами способа:</p>
-            <ul>
-                <li>Курьерская доставка: 300 руб.</li>
-                <li>Самовывоз: бесплатно</li>
-                <li>Доставка почтой: 150 руб.</li>
-            </ul>
-        </div>
-        
-        <div class="section">
-            <div class="background lap">
-                <img src="i.webp">
-            </div>
-            <div class="background lap2">
-                <img src="i.webp">
-            </div>
-            <h3>Сроки доставки</h3>
-            <p>Сроки доставки зависят от вашего местоположения и способа доставки:</p>
-            <ul>
-                <li>Курьерская доставка: 1-3 рабочих дня</li>
-                <li>Самовывоз: в день заказа</li>
-                <li>Доставка почтой: 3-7 рабочих дней</li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <div class="background lap">
-                <img src="i.webp">
-            </div>
-            <div class="background lap2">
-                <img src="i.webp">
-            </div>
-            <h3>Как оформить заказ</h3>
-            <p>Чтобы оформить заказ, выберите товары и добавьте их в корзину. Затем перейдите к оформлению заказа и выберите удобный для вас способ доставки.</p>
-        </div>
-
-        <div class="section">
-            <div class="background lap">
-                <img src="i.webp">
-            </div>
-            <div class="background lap2">
-                <img src="i.webp">
-            </div>
-            <h3>Контактная информация</h3>
-            <p>Если у вас есть вопросы, пожалуйста, свяжитесь с нашей службой поддержки:</p>
-            <p>Email: support@example.com</p>
-            <p>Телефон: +7 (123) 456-78-90</p>
-        </div>
-
-        <a class="perehod" href="catalog.html">Вернуться в каталог товаров</a></div>
-        <div class="images">
-            <div class="image-one one">
-                <div class="pic-one one"></div>
-            </div>
-            <div class="image-two two">
-                <div class="pic-two two"></div>
-            </div>
-            </div>
+    <h2 class="intro">Где нас искать</h2>
+    <p>На этой карте вы можете увидеть местоположение нашего магазина.</p>
+    <div id="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5059.818908871824!2d41.01214358482661!3d57.77772724919527!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46ad4fafd41832e5%3A0x84ff3b634bdabc9!2z0KHQv9C10LrRgtCwINCY0L3RgtC10YDQv9Cw0Lo!5e0!3m2!1sru!2sru!4v1728087999531!5m2!1sru!2sru" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
-
+    <p>Адрес: ыфсттыфивоцрвифрвфцивловифцдлв</p>
     <div class="navigation-panel">
         <div class="panel">
             <h3>Навигация</h3>
@@ -294,7 +210,7 @@
         </div>
     </div>
     <div class="information">
-        <img class="whatsapp" src="free-icon-whatsapp-3670051.png" alt="WhatsApp">
+        <img class="whatsapp" src="../assets/img/whatsapp-icon.png" alt="WhatsApp">
     </div> 
 </div>
 </body>

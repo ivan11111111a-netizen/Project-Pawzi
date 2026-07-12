@@ -1,59 +1,59 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <title>Где купить</title>
-    <link rel="stylesheet" href="css/location.css">
+    <title>О нас</title>
+    <link rel="stylesheet" href="../css/info.css">
     <script>
         function sendData(event) {
-            event.preventDefault(); // Отменяем стандартное поведение формы
+               event.preventDefault(); // Отменяем стандартное поведение формы
+   
+               const textInput = document.getElementById('textInput').value;
+   
+               // Замените 'entry.XXXXXXX' на ваш идентификатор поля
+               const formData = new FormData();
+               formData.append('entry.727567130', textInput); // Замените 'entry.XXXXXXX' на идентификатор вашего поля
+   
+               fetch('https://docs.google.com/forms/d/e/1FAIpQLSdPaJWjSPGWXFMILDB2QSlyWQp5AiL-g8t95Ayxm42Y1xDkSA/formResponse', {
+                   method: 'POST',
+                   body: formData,
+                   mode: 'no-cors' // Важно для отправки данных на Google Форму
+               })
+               
+               .then(response => {
+                   console.log('Успех:', response);
+                   alert('Данные успешно отправлены!');
+                   document.getElementById('textForm').reset(); // Очистить форму после отправки
+               })
+               .catch((error) => {
+                   console.error('Ошибка:', error);
+                   alert('Произошла ошибка при отправке данных.');
+               });
+           }
+           function getQueryParam(param) {
+               const urlParams = new URLSearchParams(window.location.search);
+               return urlParams.get(param);
+           }
+   
+           document.addEventListener('DOMContentLoaded', () => {
+               const category = getQueryParam('category');
+               if (category) {
+                   filterByCategory(category);
+               }
+           
+           window.onscroll = function() {
+                   const button = document.getElementById("scrollToTopBtn");
+                   if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                       button.style.display = "block"; // Показываем кнопку
+                   } else {
+                       button.style.display = "none"; // Скрываем кнопку
+                   }
+               };
+           });
+               function scrollToTop() {
+               window.scrollTo({ top: 0, behavior: 'smooth' });
+           }
 
-            const textInput = document.getElementById('textInput').value;
-
-            // Замените 'entry.XXXXXXX' на ваш идентификатор поля
-            const formData = new FormData();
-            formData.append('entry.727567130', textInput); // Замените 'entry.XXXXXXX' на идентификатор вашего поля
-
-            fetch('https://docs.google.com/forms/d/e/1FAIpQLSdPaJWjSPGWXFMILDB2QSlyWQp5AiL-g8t95Ayxm42Y1xDkSA/formResponse', {
-                method: 'POST',
-                body: formData,
-                mode: 'no-cors' // Важно для отправки данных на Google Форму
-            })
-            
-            .then(response => {
-                console.log('Успех:', response);
-                alert('Данные успешно отправлены!');
-                document.getElementById('textForm').reset(); // Очистить форму после отправки
-            })
-            .catch((error) => {
-                console.error('Ошибка:', error);
-                alert('Произошла ошибка при отправке данных.');
-            });
-        }
-        function getQueryParam(param) {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get(param);
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const category = getQueryParam('category');
-            if (category) {
-                filterByCategory(category);
-            }
-        
-        window.onscroll = function() {
-                const button = document.getElementById("scrollToTopBtn");
-                if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-                    button.style.display = "block"; // Показываем кнопку
-                } else {
-                    button.style.display = "none"; // Скрываем кнопку
-                }
-            };
-        });
-            function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function toggleDropdown() {
+           function toggleDropdown() {
         document.getElementById("dropdown-content").classList.toggle("show");
     }
 
@@ -109,15 +109,15 @@
             }
         }
     }
-    </script>
-</head>
-<body>
+   </script>
+   </head>
+   <body>
     <div class="boody">
         <header>
            <div class="start"><div class="logoback"><div></div></div><h1>PAWZI.AR</h1></div>
             <nav>
                 <ul class="pc">
-                    <li><a class="home" href="html.html">Главная</a></li>
+                    <li><a class="home" href="index.html">Главная</a></li>
                     <li><a class="catalog" href="catalog.html">Каталог</a></li>
                     <li><a class="location" href="location.html">Где купить?</a></li>
                     <li><a class="delivery" href="delivery.html">Доставка</a></li>
@@ -129,7 +129,7 @@
                     <li><div class="dropdown">
                         <button id="dropdown-button" onclick="toggleDropdown()">Выберите раздел</button>
                         <div id="dropdown-content" class="dropdown-content">
-                            <a href="html.html" onclick="selectSection('Главная')">Главная</a>
+                            <a href="index.html" onclick="selectSection('Главная')">Главная</a>
                             <a href="catalog.html" onclick="selectSection('Каталог')">Каталог</a>
                             <a href="location.html" onclick="selectSection('Где купить?')">Где купить?</a>
                             <a href="delivery.html" onclick="selectSection('Доставка')">Доставка</a>
@@ -142,12 +142,74 @@
         </header>
         <div class="helper"></div>
         <button id="scrollToTopBtn" class="scroll-to-top" onclick="scrollToTop()"><em>Наверх</em><span>👆</span></button>
-    <h2 class="intro">Где нас искать</h2>
-    <p>На этой карте вы можете увидеть местоположение нашего магазина.</p>
-    <div id="map">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5059.818908871824!2d41.01214358482661!3d57.77772724919527!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46ad4fafd41832e5%3A0x84ff3b634bdabc9!2z0KHQv9C10LrRgtCwINCY0L3RgtC10YDQv9Cw0Lo!5e0!3m2!1sru!2sru!4v1728087999531!5m2!1sru!2sru" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+<h2 class="intro">О нас</h2>
+    <div class="all">
+        <div class="text">
+    <div class="container">
+        <div class="section">
+            <div class="background lap">
+                <img src="../assets/img/icon.webp">
+            </div>
+            <div class="background lap2">
+                <img src="../assets/img/icon.webp">
+            </div>
+            <h3>Наша компания</h3>
+            <p>Мы — команда профессионалов, стремящихся предоставить вам лучшие товары и услуги. Наша компания была основана в 2020 году с целью обеспечения высококачественной продукции по доступным ценам.</p>
+        </div>
+        
+        <div class="section">
+            <div class="background lap">
+                <img src="../assets/img/icon.webp">
+            </div>
+            <div class="background lap2">
+                <img src="../assets/img/icon.webp">
+            </div>
+            <h3>Наша миссия</h3>
+            <p>Наша миссия — удовлетворить потребности наших клиентов, предлагая только качественные товары и индивидуальный подход. Мы постоянно работаем над улучшением нашего сервиса и расширением ассортимента.</p>
+        </div>
+        
+        <div class="section">
+            <div class="background lap">
+                <img src="../assets/img/icon.webp">
+            </div>
+            <div class="background lap2">
+                <img src="../assets/img/icon.webp">
+            </div>
+            <h3>Почему выбирают нас</h3>
+            <p>Мы гордимся тем, что предлагаем:</p>
+            <ul>
+                <li>Высокое качество продукции</li>
+                <li>Конкурентные цены</li>
+                <li>Отличное обслуживание клиентов</li>
+                <li>Быструю доставку</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <div class="background lap">
+                <img src="../assets/img/icon.webp">
+            </div>
+            <div class="background lap2">
+                <img src="../assets/img/icon.webp">
+            </div>
+            <h3>Контактная информация</h3>
+            <p>Если у вас есть вопросы или предложения, пожалуйста, свяжитесь с нами:</p>
+            <p>Email: support@example.com</p>
+            <p>Телефон: +7 (123) 456-78-90</p>
+        </div>
+
+        <a class="perehod" href="catalog.html">Вернуться в каталог товаров</a>
     </div>
-    <p>Адрес: ыфсттыфивоцрвифрвфцивловифцдлв</p>
+        </div>
+        <div class="images">
+        <div class="image-one one">
+            <div class="pic-one one"></div>
+        </div>
+        <div class="image-two two">
+            <div class="pic-two two"></div>
+        </div>
+        </div>
+    </div>
     <div class="navigation-panel">
         <div class="panel">
             <h3>Навигация</h3>
@@ -210,8 +272,8 @@
         </div>
     </div>
     <div class="information">
-        <img class="whatsapp" src="free-icon-whatsapp-3670051.png" alt="WhatsApp">
+        <img class="whatsapp" src="../assets/img/whatsapp-icon.png" alt="WhatsApp">
     </div> 
-</div>
-</body>
-</html>
+    </div>
+    </body>
+    </html>

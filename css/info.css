@@ -39,7 +39,7 @@
 .pic-one{
     height: calc(520px + 4vw);
     width: calc(520px + 4vw);
-    background: url('../infoimg/DSCF5460.jpg') no-repeat center;
+    background: url('../assets/img/info/DSCF5460.jpg') no-repeat center;
     background-size: cover;
     margin: auto;
 }
@@ -60,7 +60,7 @@
 .pic-two{
     height: calc(520px + 4vw);
     width: calc(520px + 4vw);
-    background: url('../infoimg/DSCF5297.jpg') no-repeat center;
+    background: url('../assets/img/info/DSCF5297.jpg') no-repeat center;
     background-size: cover;
     margin: auto;
 }
