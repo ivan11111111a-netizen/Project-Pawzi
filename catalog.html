@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="css/catalog.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+    const categoryButtons = document.querySelectorAll('.category-button');
+    
+    categoryButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            if (!button.classList.contains('reset-button')) {
+                categoryButtons.forEach(btn => btn.classList.remove('active-filter'));
+                button.classList.add('active-filter');
+            } else {
+                categoryButtons.forEach(btn => btn.classList.remove('active-filter'));
+            }
+        });
+    });
+
+    const category = getQueryParam('category');
+    if (category) {
+        filterByCategory(category);
+    }
+
+    window.onscroll = function() {
+        const button = document.getElementById("scrollToTopBtn");
+        if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+            button.style.display = "block"; // Показываем кнопку
+        } else {
+            button.style.display = "none"; // Скрываем кнопку
+        }
+    };
+});
+
+function filterByCategory(category) {
+    const containers = document.querySelectorAll('.container');
+    const firstContainer = document.querySelector('.container.wfilt');
+
+    containers.forEach(container => {
+        if (container.querySelector(`.product.${category}`)) {
+            container.style.display = 'block';
+        } else {
+            container.style.display = 'none';
+        }
+    });
+
+    const targetContainer = Array.from(containers).find(container => container.querySelector(`.product.${category}`));
+    if (targetContainer && firstContainer) {
+        firstContainer.parentNode.insertBefore(targetContainer, firstContainer);
+    }
+}
+
+function resetFilters() {
+    const containers = document.querySelectorAll('.container');
+    containers.forEach(container => {
+        container.style.display = 'block';
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+         function sendData(event) {
+            event.preventDefault(); // Отменяем стандартное поведение формы
+
+            const textInput = document.getElementById('textInput').value;
+
+            // Замените 'entry.XXXXXXX' на ваш идентификатор поля
+            const formData = new FormData();
+            formData.append('entry.727567130', textInput); // Замените 'entry.XXXXXXX' на идентификатор вашего поля
+
+            fetch('https://docs.google.com/forms/d/e/1FAIpQLSdPaJWjSPGWXFMILDB2QSlyWQp5AiL-g8t95Ayxm42Y1xDkSA/formResponse', {
+                method: 'POST',
+                body: formData,
+                mode: 'no-cors' // Важно для отправки данных на Google Форму
+            })
+            
+            .then(response => {
+                console.log('Успех:', response);
+                alert('Данные успешно отправлены!');
+                document.getElementById('textForm').reset(); // Очистить форму после отправки
+            })
+            .catch((error) => {
+                console.error('Ошибка:', error);
+                alert('Произошла ошибка при отправке данных.');
+            });
+        }
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const category = getQueryParam('category');
+            if (category) {
+                filterByCategory(category);
+            }
+        
+        window.onscroll = function() {
+                const button = document.getElementById("scrollToTopBtn");
+                if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                    button.style.display = "block"; // Показываем кнопку
+                } else {
+                    button.style.display = "none"; // Скрываем кнопку
+                }
+            };
+        });
+        document.addEventListener('DOMContentLoaded', () => {
+    const categoryButtons = document.querySelectorAll('.category-button');
+    const category = getQueryParam('category');
+
+    if (category) {
+        filterByCategory(category);
+
+        // Найти кнопку, соответствующую категории, и отметить её как активную
+        const activeButton = Array.from(categoryButtons).find(button => button.textContent.toLowerCase().includes(category));
+        if (activeButton) {
+            categoryButtons.forEach(btn => btn.classList.remove('active-filter'));
+            activeButton.classList.add('active-filter');
+        }
+    }
+});
+function toggleDropdown() {
+        document.getElementById("dropdown-content").classList.toggle("show");
+    }
+
+    function selectSection(section) {
+        document.getElementById("dropdown-button").textContent = section;
+        document.getElementById("dropdown-content").classList.remove("show");
+    }
+
+    function setInitialButtonText() {
+        const path = window.location.pathname;
+        const page = path.split("/").pop();
+
+        let sectionName = "Выберите раздел";
+
+        switch (page) {
+            case "html.html":
+                sectionName = "Главная";
+                break;
+            case "catalog.html":
+                sectionName = "Каталог";
+                break;
+                case "location.html":
+                sectionName = "Где купить?";
+                break;
+                case "delivery.html":
+                sectionName = "Доставка";
+                break;
+                case "opt.html":
+                sectionName = "Опт";
+                break;
+                case "info.html":
+                sectionName = "О нас";
+                break;
+            default:
+                sectionName = "Выберите раздел";
+        }
+
+        document.getElementById("dropdown-button").textContent = sectionName;
+    }
+
+    // Установить текст кнопки при загрузке страницы
+    window.onload = setInitialButtonText;
+
+    // Закрытие меню при клике вне его
+    window.onclick = function(event) {
+        if (!event.target.matches('button')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            for (var i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+    </script>
+</head>
+<body>
+    <div class="boody">
+        <header>
+           <div class="start"><div class="logoback"><div></div></div><h1>PAWZI.AR</h1></div>
+            <nav>
+                <ul class="pc">
+                    <li><a class="home" href="html.html">Главная</a></li>
+                    <li><a class="catalog" href="catalog.html">Каталог</a></li>
+                    <li><a class="location" href="location.html">Где купить?</a></li>
+                    <li><a class="delivery" href="delivery.html">Доставка</a></li>
+                    <li><a class="opt" href="opt.html">Опт</a></li>
+                    <li><a class="info" href="info.html">О нас</a></li>
+                </ul>
+                <ul class="mob">
+                    <li>Выберете раздел:</li>
+                    <li><div class="dropdown">
+                        <button id="dropdown-button" onclick="toggleDropdown()">Выберите раздел</button>
+                        <div id="dropdown-content" class="dropdown-content">
+                            <a href="html.html" onclick="selectSection('Главная')">Главная</a>
+                            <a href="catalog.html" onclick="selectSection('Каталог')">Каталог</a>
+                            <a href="location.html" onclick="selectSection('Где купить?')">Где купить?</a>
+                            <a href="delivery.html" onclick="selectSection('Доставка')">Доставка</a>
+                            <a href="opt.html" onclick="selectSection('Опт')">Опт</a>
+                            <a href="info.html" onclick="selectSection('О нас')">О нас</a>
+                        </div>
+                    </div></li>
+                </ul>
+            </nav>
+        </header>
+        <div class="helper"></div>
+        <button id="scrollToTopBtn" class="scroll-to-top" onclick="scrollToTop()"><em>Наверх</em><span>👆</span></button>
+    <h2 class="intro">Каталог товаров</h2>
+    <div class="all">
+        <div id="conteiner-wrapper">
+            <div class="container first">
+                <div class="between">
+                    <div class="photo"><img src="-2147483648_-210702.webp"></div>
+                    <div class="under">&nbsp;PAWZI COCINA&nbsp;</div>
+                    <div class="uunder">Open Hours: 8 am - 10 pm</div>
+                </div>
+                <div class="containerr">
+                <div class="corner-extension"></div>
+                <div class="corner"></div>
+                <div class="description"><p>sdasdasaddfsdfsdfsdfsfdad</p></div>
+                <div class="product beef">
+                    <div class="product-info">
+                        <h2 class="product-title">RABO</h2>
+                        <div class="product-details">
+                            <div class="product-detail">
+                                <p class="text" id="text1">S (100 gr)<span class="tooltiptext">Купить</span></p>
+                                <p class="text" id="text2">M (250 gr)<span class="tooltiptext">Купить</span></p>
+                                <p class="text" id="text3">L (600 gr)<span class="tooltiptext">Купить</span></p>
+                                <p class="text" id="text4">POR PESO<span class="tooltiptext">Купить</span></p>
+                            </div>
+                            <div class="product-detail">
+                                <p id="text5" class="text">7400 ARS<span class="tooltiptext">Купить</span></p>
+                                <p id="text6" class="text">17400 ARS<span class="tooltiptext">Купить</span></p>
+                                <p id="text7" class="text">42000 ARS<span class="tooltiptext">Купить</span></p>
+                                <p id="text8" class="text">IN DIRECT<span class="tooltiptext">Купить</span></p>
+                            </div>
+                        <div class="product-image">
+                        <img src="https://i.imgur.com/a42f46b.jpg" alt="Product Image">
+                    </div>
+                        </div>
+                    </div> 
+                </div></div>
+            <div class="containerr">
+                <div class="corner-extension"></div>
+                <div class="corner"></div>
+                <div class="description"><p>sdasdasaddfsdfsdfsdfsfdad</p></div>
+                <div class="product beef">
+                    
+                    <div class="product-info">
+                        <h2 class="product-title">OREJAS DE RES</h2>
+                        <div class="product-details">
+                            <div class="product-detail">
+                                <p class="text" id="text9">S (100 gr)<span class="tooltiptext">Купить</span></p>
+                                <p class="text" id="text10">POR PESO<span class="tooltiptext">Купить</span></p>
+                            </div>
+                            <div class="product-detail">
+                                <p id="text11" class="text">1500 ARS<span class="tooltiptext">Купить</span></p>
+                                <p id="text12" class="text">IN DIRECT<span class="tooltiptext">Купить</span></p>
+                            </div>
+                            <div class="product-image">
+                        <img   src="https://i.imgur.com/V2j0538.jpg" alt="Product Image">
+                    </div>
+                        </div>
+                    </div>
+                </div></div>
+                <div class="containerr">
+                    <div class="corner-extension"></div>
+                    <div class="corner"></div>
+                    <div class="description"><p>sdasdasaddfsdfsdfsdfsfdad</p></div>
+                <div class="product beef">
+                    
+                    <div class="product-info">
+                        <h2 class="product-title">COXIS</h2>
+                        <div class="product-details">
+                            <div class="product-detail">
+                                <p id="text13" class="text">S (100 gr)<span class="tooltiptext">Купить</span></p>
+                                <p id="text14" class="text">POR PESO<span class="tooltiptext">Купить</span></p>
+                            </div>
+                            <div class="product-detail">
+                                <p id="text15" class="text">5000 ARS<span class="tooltiptext">Купить</span></p>
+                                <p id="text16" class="text">IN DIRECT<span class="tooltiptext">Купить</span></p>
+                            </div>
+                            <div class="product-image">
+                        <img src="https://i.imgur.com/Q5T0l3D.jpg" alt="Product Image">
+                    </div>
+                        </div>
+                    </div>
+                </div>
+            </div></div>
+            <div class="container second">
+                <div class="between">
+                    <div class="photo"><img src="-2147483648_-210702.webp"></div>
+                    <div class="under">&nbsp;PAWZI COCINA&nbsp;</div>
+                    <div class="uunder">Open Hours: 8 am - 10 pm</div>
+                </div>
+                <div class="containerr">
+                <div class="corner-extension"></div>
+                <div class="corner"></div>
+                <div class="description"><p>sdasdasaddfsdfsdfsdfsfdad</p></div>
+                <div class="product pork">
+                    
+                    <div class="product-info">
+                        <h2 class="product-title">RABO</h2>
+                        <div class="product-details">
+                            <div class="product-detail">
+                                <p id="text17" class="text">S (100 gr)<span class="tooltiptext">Купить</span></p>
+                                <p id="text18" class="text">M (250 gr)<span class="tooltiptext">Купить</span></p>
+                                <p id="text19" class="text">L (600 gr)<span class="tooltiptext">Купить</span></p>
+                                <p id="text20" class="text">POR PESO<span class="tooltiptext">Купить</span></p>
+                            </div>
+                            <div class="product-detail">
+                                <p id="text21" class="text">7400 ARS<span class="tooltiptext">Купить</span></p>
+                                <p id="text22" class="text">17400 ARS<span class="tooltiptext">Купить</span></p>
+                                <p id="text23" class="text">42000 ARS<span class="tooltiptext">Купить</span></p>
+                                <p id="text24" class="text">IN DIRECT<span class="tooltiptext">Купить</span></p>
+                            </div>
+                            <div class="product-image">
+                        <img   src="https://i.imgur.com/a42f46b.jpg" alt="Product Image">
+                    </div>
+                        </div>
+                    </div>
+                </div></div>
+                <div class="containerr">
+                    <div class="corner-extension"></div>
+                    <div class="corner"></div>
+                    <div class="description"><p>sdasdasaddfsdfsdfsdfsfdad</p></div>
+                <div class="product pork">
+                    <div class="product-info">
+                        <h2 class="product-title">OREJAS DE RES</h2>
+                        <div class="product-details">
+                            <div class="product-detail">
+                                <p id="text25" class="text">S (100 gr)<span class="tooltiptext">Купить</span></p>
+                                <p id="text26" class="text">POR PESO<span class="tooltiptext">Купить</span></p>
+                            </div>
+                            <div class="product-detail">
+                                <p id="text27" class="text">1500 ARS<span class="tooltiptext">Купить</span></p>
+                                <p id="text28" class="text">IN DIRECT<span class="tooltiptext">Купить</span></p>
+                            </div>
+                            <div class="product-image">
+                                <img   src="https://i.imgur.com/V2j0538.jpg" alt="Product Image">
+                            </div>
+                        </div>
+                    </div>
+                </div></div>
+                <div class="containerr">
+                    <div class="corner-extension"></div>
+                    <div class="corner"></div>
+                    <div class="description"><p>sdasdasaddfsdfsdfsdfsfdad</p></div>
+                <div class="product pork">
+                    <div class="product-info">
+                        <h2 class="product-title">COXIS</h2>
+                        <div class="product-details">
+                            <div class="product-detail">
+                                <p id="text29" class="text">S (100 gr)<span class="tooltiptext">Купить</span></p>
+                                <p id="text30" class="text">POR PESO<span class="tooltiptext">Купить</span></p>
+                            </div>
+                            <div class="product-detail">
+                                <p id="text31" class="text">5000 ARS<span class="tooltiptext">Купить</span></p>
+                                <p id="text32" class="text">IN DIRECT<span class="tooltiptext">Купить</span></p>
+                            </div>
+                            <div class="product-image">
+                                <img   src="https://i.imgur.com/Q5T0l3D.jpg" alt="Product Image">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div></div>
+            <div class="container third">
+                <div class="between">
+                    <div class="photo"><img src="-2147483648_-210702.webp"></div>
+                    <div class="under">&nbsp;PAWZI COCINA&nbsp;</div>
+                    <div class="uunder">Open Hours: 8 am - 10 pm</div>
+                </div>
+                <div class="containerr">
+                <div class="corner-extension"></div>
+                <div class="corner"></div>
+                <div class="description"><p>sdasdasaddfsdfsdfsdfsfdad</p></div>
+                <div class="product chicken">
+                    <div class="product-info">
+                        <h2 class="product-title">RABO</h2>
+                        <div class="product-details">
+                            <div class="product-detail">
+                                <p id="text33" class="text">S (100 gr)<span class="tooltiptext">Купить</span></p>
+                                <p id="text34" class="text">M (250 gr)<span class="tooltiptext">Купить</span></p>
+                                <p id="text35" class="text">L (600 gr)<span class="tooltiptext">Купить</span></p>
+                                <p id="text36" class="text">POR PESO<span class="tooltiptext">Купить</span></p>
+                            </div>
+                            <div class="product-detail">
+                                <p id="text37" class="text">7400 ARS<span class="tooltiptext">Купить</span></p>
+                                <p id="text38" class="text">17400 ARS<span class="tooltiptext">Купить</span></p>
+                                <p id="text39" class="text">42000 ARS<span class="tooltiptext">Купить</span></p>
+                                <p id="text40" class="text">IN DIRECT<span class="tooltiptext">Купить</span></p>
+                            </div>
+                            <div class="product-image">
+                                <img src="https://i.imgur.com/a42f46b.jpg" alt="Product Image">
+                            </div>
+                        </div>
+                    </div>
+                </div></div>
+                <div class="containerr">
+                    <div class="corner-extension"></div>
+                    <div class="corner"></div>
+                    <div class="description"><p>sdasdasaddfsdfsdfsdfsfdad</p></div>
+                <div class="product chicken">
+                    <div class="product-info">
+                        <h2 class="product-title">OREJAS DE RES</h2>
+                        <div class="product-details">
+                            <div class="product-detail">
+                                <p id="text41" class="text">S (100 gr)<span class="tooltiptext">Купить</span></p>
+                                <p id="text42" class="text">POR PESO<span class="tooltiptext">Купить</span></p>
+                            </div>
+                            <div class="product-detail">
+                                <p id="text43" class="text">1500 ARS<span class="tooltiptext">Купить</span></p>
+                                <p id="text44" class="text">IN DIRECT<span class="tooltiptext">Купить</span></p>
+                            </div>
+                            <div class="product-image">
+                                <img src="https://i.imgur.com/V2j0538.jpg" alt="Product Image">
+                            </div>
+                        </div>
+                    </div>
+                </div></div>
+                <div class="containerr">
+                    <div class="corner-extension"></div>
+                    <div class="corner"></div>
+                    <div class="description"><p>sdasdasaddfsdfsdfsdfsfdad</p></div>
+                <div class="product chicken">
+                    <div class="product-info">
+                        <h2 class="product-title">COXIS</h2>
+                        <div class="product-details">
+                            <div class="product-detail">
+                                <p id="text45" class="text">S (100 gr)<span class="tooltiptext">Купить</span></p>
+                                <p id="text46" class="text">POR PESO<span class="tooltiptext">Купить</span></p>
+                            </div>
+                            <div class="product-detail">
+                                <p id="text47" class="text">5000 ARS<span class="tooltiptext">Купить</span></p>
+                                <p id="text48" class="text">IN DIRECT<span class="tooltiptext">Купить</span></p>
+                            </div>
+                            <div class="product-image">
+                                <img src="https://i.imgur.com/Q5T0l3D.jpg" alt="Product Image">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div></div>
+            <div class="container fourth">
+                <div class="between">
+                    <div class="photo"><img src="-2147483648_-210702.webp"></div>
+                    <div class="under">&nbsp;PAWZI COCINA&nbsp;</div>
+                    <div class="uunder">Open Hours: 8 am - 10 pm</div>
+                </div>
+                <div class="containerr">
+                <div class="corner-extension"></div>
+                <div class="corner"></div>
+                <div class="description"><p>sdasdasaddfsdfsdfsdfsfdad</p></div>
+                <div class="product duck">
+                    <div class="product-info">
+                        <h2 class="product-title">RABO</h2>
+                        <div class="product-details">
+                            <div class="product-detail">
+                                <p id="text49" class="text">S (100 gr)<span class="tooltiptext">Купить</span></p>
+                                <p id="text50" class="text">M (250 gr)<span class="tooltiptext">Купить</span></p>
+                                <p id="text51" class="text">L (600 gr)<span class="tooltiptext">Купить</span></p>
+                                <p id="text52" class="text">POR PESO<span class="tooltiptext">Купить</span></p>
+                            </div>
+                            <div class="product-detail">
+                                <p id="text53" class="text">7400 ARS<span class="tooltiptext">Купить</span></p>
+                                <p id="text54" class="text">17400 ARS<span class="tooltiptext">Купить</span></p>
+                                <p id="text55" class="text">42000 ARS<span class="tooltiptext">Купить</span></p>
+                                <p id="text56" class="text">IN DIRECT<span class="tooltiptext">Купить</span></p>
+                            </div>
+                            <div class="product-image">
+                                <img   src="https://i.imgur.com/a42f46b.jpg" alt="Product Image">
+                            </div>
+                        </div>
+                    </div>
+                </div></div>
+                <div class="containerr">
+                    <div class="corner-extension"></div>
+                    <div class="corner"></div>
+                    <div class="description"><p>sdasdasaddfsdfsdfsdfsfdad</p></div>
+                <div class="product duck">
+                    <div class="product-info">
+                        <h2 class="product-title">OREJAS DE RES</h2>
+                        <div class="product-details">
+                            <div class="product-detail">
+                                <p id="text57" class="text">S (100 gr)<span class="tooltiptext">Купить</span></p>
+                                <p id="text58" class="text">POR PESO<span class="tooltiptext">Купить</span></p>
+                            </div>
+                            <div class="product-detail">
+                                <p id="text59" class="text">1500 ARS<span class="tooltiptext">Купить</span></p>
+                                <p id="text60" class="text">IN DIRECT<span class="tooltiptext">Купить</span></p>
+                            </div>
+                            <div class="product-image">
+                                <img   src="https://i.imgur.com/V2j0538.jpg" alt="Product Image">
+                            </div>
+                        </div>
+                    </div>
+                </div></div>
+                <div class="containerr">
+                    <div class="corner-extension"></div>
+                    <div class="corner"></div>
+                    <div class="description"><p>sdasdasaddfsdfsdfsdfsfdad</p></div>
+                <div class="product duck">
+                    <div class="product-info">
+                        <h2 class="product-title">COXIS</h2>
+                        <div class="product-details">
+                            <div class="product-detail">
+                                <p id="text61" class="text">S (100 gr)<span class="tooltiptext">Купить</span></p>
+                                <p id="text62" class="text">POR PESO<span class="tooltiptext">Купить</span></p>
+                            </div>
+                            <div class="product-detail">
+                                <p id="text63" class="text">5000 ARS<span class="tooltiptext">Купить</span></p>
+                                <p id="text64" class="text">IN DIRECT<span class="tooltiptext">Купить</span></p>
+                            </div>
+                            <div class="product-image">
+                                <img   src="https://i.imgur.com/Q5T0l3D.jpg" alt="Product Image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div></div>
+        <div class="container fifth">
+            <div class="between">
+                <div class="photo"><img src="-2147483648_-210702.webp"></div>
+                <div class="under">&nbsp;PAWZI COCINA&nbsp;</div>
+                <div class="uunder">Open Hours: 8 am - 10 pm</div>
+            </div>
+            <div class="containerr">
+            <div class="corner-extension"></div>
+            <div class="corner"></div>
+            <div class="description"><p>sdasdasaddfsdfsdfsdfsfdad</p></div>
+            <div class="product seafood">
+                <div class="product-info">
+                    <h2 class="product-title">RABO</h2>
+                    <div class="product-details">
+                        <div class="product-detail">
+                            <p id="text65" class="text">S (100 gr)<span class="tooltiptext">Купить</span></p>
+                            <p id="text66" class="text">M (250 gr)<span class="tooltiptext">Купить</span></p>
+                            <p id="text67" class="text">L (600 gr)<span class="tooltiptext">Купить</span></p>
+                            <p id="text68" class="text">POR PESO<span class="tooltiptext">Купить</span></p>
+                        </div>
+                        <div class="product-detail">
+                            <p id="text69" class="text">7400 ARS<span class="tooltiptext">Купить</span></p>
+                            <p id="text70" class="text">17400 ARS<span class="tooltiptext">Купить</span></p>
+                            <p id="text71" class="text">42000 ARS<span class="tooltiptext">Купить</span></p>
+                            <p id="text72" class="text">IN DIRECT<span class="tooltiptext">Купить</span></p>
+                        </div>
+                        <div class="product-image">
+                            <img   src="https://i.imgur.com/a42f46b.jpg" alt="Product Image">
+                        </div>
+                    </div>
+                </div>
+            </div></div>
+            <div class="containerr">
+                <div class="corner-extension"></div>
+                <div class="corner"></div>
+                <div class="description"><p>sdasdasaddfsdfsdfsdfsfdad</p></div>
+            <div class="product seafood">
+                
+                <div class="product-info">
+                    <h2 class="product-title">OREJAS DE RES</h2>
+                    <div class="product-details">
+                        <div class="product-detail">
+                            <p id="text73" class="text">S (100 gr)<span class="tooltiptext">Купить</span></p>
+                            <p id="text74" class="text">POR PESO<span class="tooltiptext">Купить</span></p>
+                        </div>
+                        <div class="product-detail">
+                            <p id="text75" class="text">1500 ARS<span class="tooltiptext">Купить</span></p>
+                            <p id="text76" class="text">IN DIRECT<span class="tooltiptext">Купить</span></p>
+                        </div>
+                        <div class="product-image">
+                    <img   src="https://i.imgur.com/V2j0538.jpg" alt="Product Image">
+                </div>
+                    </div>
+                </div>
+            </div></div>
+            <div class="containerr">
+                <div class="corner-extension"></div>
+                <div class="corner"></div>
+                <div class="description"><p>sdasdasaddfsdfsdfsdfsfdad</p></div>
+            <div class="product seafood">
+               
+                <div class="product-info">
+                    <h2 class="product-title">COXIS</h2>
+                    <div class="product-details">
+                        <div class="product-detail">
+                            <p id="text77" class="text">S (100 gr)<span class="tooltiptext">Купить</span></p>
+                            <p id="text78" class="text">POR PESO<span class="tooltiptext">Купить</span></p>
+                        </div>
+                        <div class="product-detail">
+                            <p id="text79" class="text">5000 ARS<span class="tooltiptext">Купить</span></p>
+                            <p id="text80" class="text">IN DIRECT<span class="tooltiptext">Купить</span></p>
+                        </div>
+                         <div class="product-image">
+                    <img   src="https://i.imgur.com/Q5T0l3D.jpg" alt="Product Image">
+                </div>
+                    </div>
+                </div>
+            </div>
+        </div></div>
+    <div class="container sixth">
+        <div class="between">
+            <div class="photo"><img src="-2147483648_-210702.webp"></div>
+            <div class="under">&nbsp;PAWZI COCINA&nbsp;</div>
+            <div class="uunder">Open Hours: 8 am - 10 pm</div>
+        </div>
+        <div class="containerr">
+        <div class="corner-extension"></div>
+        <div class="corner"></div>
+        <div class="description"><p>sdasdasaddfsdfsdfsdfsfdad</p></div>
+        <div class="product accessories">
+           
+            <div class="product-info">
+                <h2 class="product-title">RABO</h2>
+                <div class="product-details">
+                    <div class="product-detail">
+                        <p id="text81" class="text">S (100 gr)<span class="tooltiptext">Купить</span></p>
+                        <p id="text82" class="text">M (250 gr)<span class="tooltiptext">Купить</span></p>
+                        <p id="text83" class="text">L (600 gr)<span class="tooltiptext">Купить</span></p>
+                        <p id="text84" class="text">POR PESO<span class="tooltiptext">Купить</span></p>
+                    </div>
+                    <div class="product-detail">
+                        <p id="text85" class="text">7400 ARS<span class="tooltiptext">Купить</span></p>
+                        <p id="text86" class="text">17400 ARS<span class="tooltiptext">Купить</span></p>
+                        <p id="text87" class="text">42000 ARS<span class="tooltiptext">Купить</span></p>
+                        <p id="text88" class="text">IN DIRECT<span class="tooltiptext">Купить</span></p>
+                    </div>
+                    <div class="product-image">
+                <img src="https://i.imgur.com/a42f46b.jpg" alt="Product Image">
+            </div>
+                </div>
+            </div>
+        </div></div>
+        <div class="containerr">
+            <div class="corner-extension"></div>
+            <div class="corner"></div>
+            <div class="description"><p>sdasdasaddfsdfsdfsdfsfdad</p></div>
+        <div class="product accessories">
+            
+            <div class="product-info">
+                <h2 class="product-title">OREJAS DE RES</h2>
+                <div class="product-details">
+                    <div class="product-detail">
+                        <p id="text89" class="text">S (100 gr)<span class="tooltiptext">Купить</span></p>
+                        <p id="text90" class="text">POR PESO<span class="tooltiptext">Купить</span></p>
+                    </div>
+                    <div class="product-detail">
+                        <p id="text91" class="text">1500 ARS<span class="tooltiptext">Купить</span></p>
+                        <p id="text92" class="text">IN DIRECT<span class="tooltiptext">Купить</span></p>
+                    </div>
+                    <div class="product-image">
+                <img src="https://i.imgur.com/V2j0538.jpg" alt="Product Image">
+            </div>
+                </div>
+            </div>
+        </div></div>
+        <div class="containerr">
+            <div class="corner-extension"></div>
+            <div class="corner"></div>
+            <div class="description"><p>sdasdasaddfsdfsdfsdfsfdad</p></div>
+        <div class="product accessories">
+            
+            <div class="product-info">
+                <h2 class="product-title">COXIS</h2>
+                <div class="product-details">
+                    <div class="product-detail">
+                        <p id="text93" class="text">S (100 gr)<span class="tooltiptext">Купить</span></p>
+                        <p id="text94" class="text">POR PESO<span class="tooltiptext">Купить</span></p>
+                    </div>
+                    <div class="product-detail">
+                        <p id="text95" class="text">5000 ARS<span class="tooltiptext">Купить</span></p>
+                        <p id="text96" class="text">IN DIRECT<span class="tooltiptext">Купить</span></p>
+                    </div>
+                    <div class="product-image">
+                <img src="https://i.imgur.com/Q5T0l3D.jpg" alt="Product Image">
+            </div>
+                </div>
+            </div>
+        </div></div>
+    </div>
+    </div>
+    <div class="menu">
+<div id="search">Фильтры</div><button id="filterButton">Фильтры</button>
+<div id="filterMenu" class="categories">
+    <button class="category-button" onclick="filterByCategory('beef')">Beef</button>
+    <button class="category-button" onclick="filterByCategory('pork')">Pork</button>
+    <button class="category-button" onclick="filterByCategory('chicken')">Chicken</button>
+    <button class="category-button" onclick="filterByCategory('duck')">Duck</button>
+    <button class="category-button" onclick="filterByCategory('seafood')">Seafood</button>
+    <button class="category-button" onclick="filterByCategory('accessories')">Accessories</button>
+    <button class="category-button reset-button" onclick="resetFilters()">Сбросить фильтры</button>
+</div>
+    </div>
+    </div>
+    <div class="navigation-panel">
+        <div class="panel">
+            <h3>Навигация</h3>
+            <ul>
+                <li><a href="faq.html">Часто задаваемые вопросы</a></li>
+                <li><a href="delivery-policy.html">Политика доставки</a></li>
+                <li><a href="return-policy.html">Политика обмена и возврата</a></li>
+            </ul>
+        </div>
+        <div class="panel">
+            <h3>Связаться с нами</h3>
+            <ul class="spec">
+                <li>
+                    121212132323323
+                </li>
+                <li>
+                    ayuwauvdawkdadkhabdaw
+                </li>
+                <li>
+                    khasdakhabdbhadjhd
+                </li>
+            </ul>
+        </div>
+        <div class="panel">
+            <h3>Способы оплаты</h3>
+            <div class="pay">
+                <img src="pay\visa@2x.png" alt="">
+                <img src="pay\visadebit@2x.png" alt="">
+                <img src="pay\mastercard@2x.png" alt="">
+                <img src="pay\maestro@2x.png" alt="">
+                <img src="pay\cabal@2x.png" alt="">
+                <img src="pay\cabaldebit@2x.png" alt="">
+                <img src="pay\amex@2x.png" alt="">
+                <img src="pay\argencard@2x.png" alt="">
+                <img src="pay\custom@2x.png" alt="">
+                <img src="pay\cencosud@2x.png" alt="">
+                <img src="pay\pagofacil@2x.png" alt="">
+                <img src="pay\diners@2x.png" alt="">
+                <img src="pay\rapipago@2x.png" alt="">
+                <img src="pay\tarjeta-shopping@2x.png" alt="">
+                <img src="pay\tarjeta-naranja@2x.png" alt="">
+
+            </div>
+            <h3>Способы доставки</h3>
+            <img class="loc" src="pay\1211@2x.png">
+        </div>
+        <div class="panel v">
+            <h3>Информационный бюллетень</h3>
+            <form id="textForm" onsubmit="sendData(event)">
+                <textarea id="textInput" rows="4" cols="50" placeholder="YOUR EMAIL..."></textarea><br>
+                <button id="textInputt" type="submit">Отправить</button>
+            </form>
+        </div>
+        <div class="panel">
+            <h3>Дополнительная информация</h3>
+            <ul>
+                <li><a href="social-media.html">Социальные сети</a></li>
+                <li><a href="security-certification.html">Безопасность и сертификация</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="information">
+        <img class="whatsapp" src="free-icon-whatsapp-3670051.png" alt="WhatsApp">
+    </div> 
+</div>
+</body>
+<script>
+    document.querySelectorAll('.text').forEach(el => {
+    el.addEventListener('mouseenter', function() {
+        const id = this.id;
+        let pairId;
+
+        if (id === 'text1') pairId = 'text5';
+        else if (id === 'text2') pairId = 'text6';
+        else if (id === 'text3') pairId = 'text7';
+        else if (id === 'text4') pairId = 'text8';
+        else if (id === 'text5') pairId = 'text1';
+        else if (id === 'text6') pairId = 'text2';
+        else if (id === 'text7') pairId = 'text3';
+        else if (id === 'text8') pairId = 'text4';
+        else if (id === 'text9') pairId = 'text11';
+        else if (id === 'text10') pairId = 'text12';
+        else if (id === 'text11') pairId = 'text9';
+        else if (id === 'text12') pairId = 'text10';
+        else if (id === 'text13') pairId = 'text15';
+        else if (id === 'text14') pairId = 'text16';
+        else if (id === 'text15') pairId = 'text13';
+        else if (id === 'text16') pairId = 'text14';
+        else if (id === 'text17') pairId = 'text21';
+        else if (id === 'text18') pairId = 'text22';
+        else if (id === 'text19') pairId = 'text23';
+        else if (id === 'text20') pairId = 'text24';
+        else if (id === 'text21') pairId = 'text17';
+        else if (id === 'text22') pairId = 'text18';
+        else if (id === 'text23') pairId = 'text19';
+        else if (id === 'text24') pairId = 'text20';
+        else if (id === 'text25') pairId = 'text27';
+        else if (id === 'text26') pairId = 'text28';
+        else if (id === 'text27') pairId = 'text25';
+        else if (id === 'text28') pairId = 'text26';
+        else if (id === 'text29') pairId = 'text31';
+        else if (id === 'text30') pairId = 'text32';
+        else if (id === 'text31') pairId = 'text29';
+        else if (id === 'text32') pairId = 'text30';
+
+        else if (id === 'text33') pairId = 'text37';
+        else if (id === 'text34') pairId = 'text38';
+        else if (id === 'text35') pairId = 'text39';
+        else if (id === 'text36') pairId = 'text40';
+        else if (id === 'text37') pairId = 'text33';
+        else if (id === 'text38') pairId = 'text34';
+        else if (id === 'text39') pairId = 'text35';
+        else if (id === 'text40') pairId = 'text36';
+        else if (id === 'text41') pairId = 'text43';
+        else if (id === 'text42') pairId = 'text44';
+        else if (id === 'text43') pairId = 'text41';
+        else if (id === 'text44') pairId = 'text42';
+        else if (id === 'text45') pairId = 'text47';
+        else if (id === 'text46') pairId = 'text48';
+        else if (id === 'text47') pairId = 'text45';
+        else if (id === 'text48') pairId = 'text46';
+
+        else if (id === 'text49') pairId = 'text53';
+        else if (id === 'text50') pairId = 'text54';
+        else if (id === 'text51') pairId = 'text55';
+        else if (id === 'text52') pairId = 'text56';
+        else if (id === 'text53') pairId = 'text49';
+        else if (id === 'text54') pairId = 'text50';
+        else if (id === 'text55') pairId = 'text51';
+        else if (id === 'text56') pairId = 'text52';
+        else if (id === 'text57') pairId = 'text59';
+        else if (id === 'text58') pairId = 'text60';
+        else if (id === 'text59') pairId = 'text57';
+        else if (id === 'text60') pairId = 'text58';
+        else if (id === 'text61') pairId = 'text63';
+        else if (id === 'text62') pairId = 'text64';
+        else if (id === 'text63') pairId = 'text61';
+        else if (id === 'text64') pairId = 'text62';
+
+        else if (id === 'text65') pairId = 'text81';
+        else if (id === 'text66') pairId = 'text82';
+        else if (id === 'text67') pairId = 'text83';
+        else if (id === 'text68') pairId = 'text84';
+        else if (id === 'text69') pairId = 'text65';
+        else if (id === 'text70') pairId = 'text66';
+        else if (id === 'text71') pairId = 'text67';
+        else if (id === 'text72') pairId = 'text68';
+        else if (id === 'text73') pairId = 'text75';
+        else if (id === 'text74') pairId = 'text76';
+        else if (id === 'text75') pairId = 'text73';
+        else if (id === 'text76') pairId = 'text74';
+        else if (id === 'text77') pairId = 'text79';
+        else if (id === 'text78') pairId = 'text80';
+        else if (id === 'text79') pairId = 'text77';
+        else if (id === 'text80') pairId = 'text78';
+
+        else if (id === 'text81') pairId = 'text97';
+        else if (id === 'text82') pairId = 'text98';
+        else if (id === 'text83') pairId = 'text99';
+        else if (id === 'text84') pairId = 'text100';
+        else if (id === 'text85') pairId = 'text81';
+        else if (id === 'text86') pairId = 'text82';
+        else if (id === 'text87') pairId = 'text83';
+        else if (id === 'text88') pairId = 'text84';
+        else if (id === 'text89') pairId = 'text91';
+        else if (id === 'text90') pairId = 'text92';
+        else if (id === 'text91') pairId = 'text89';
+        else if (id === 'text92') pairId = 'text90';
+        else if (id === 'text93') pairId = 'text95';
+        else if (id === 'text94') pairId = 'text96';
+        else if (id === 'text95') pairId = 'text93';
+        else if (id === 'text96') pairId = 'text94';
+
+
+
+
+        document.getElementById(pairId).style.transform = 'scale(1.2) translateY(-5px)';
+    });
+
+    el.addEventListener('mouseleave', function() {
+        const id = this.id;
+        let pairId;
+
+        if (id === 'text1') pairId = 'text5';
+        else if (id === 'text2') pairId = 'text6';
+        else if (id === 'text3') pairId = 'text7';
+        else if (id === 'text4') pairId = 'text8';
+        else if (id === 'text5') pairId = 'text1';
+        else if (id === 'text6') pairId = 'text2';
+        else if (id === 'text7') pairId = 'text3';
+        else if (id === 'text8') pairId = 'text4';
+        else if (id === 'text9') pairId = 'text11';
+        else if (id === 'text10') pairId = 'text12';
+        else if (id === 'text11') pairId = 'text9';
+        else if (id === 'text12') pairId = 'text10';
+        else if (id === 'text13') pairId = 'text15';
+        else if (id === 'text14') pairId = 'text16';
+        else if (id === 'text15') pairId = 'text13';
+        else if (id === 'text16') pairId = 'text14';
+        else if (id === 'text17') pairId = 'text21';
+        else if (id === 'text18') pairId = 'text22';
+        else if (id === 'text19') pairId = 'text23';
+        else if (id === 'text20') pairId = 'text24';
+        else if (id === 'text21') pairId = 'text17';
+        else if (id === 'text22') pairId = 'text18';
+        else if (id === 'text23') pairId = 'text19';
+        else if (id === 'text24') pairId = 'text20';
+        else if (id === 'text25') pairId = 'text27';
+        else if (id === 'text26') pairId = 'text28';
+        else if (id === 'text27') pairId = 'text25';
+        else if (id === 'text28') pairId = 'text26';
+        else if (id === 'text29') pairId = 'text31';
+        else if (id === 'text30') pairId = 'text32';
+        else if (id === 'text31') pairId = 'text29';
+        else if (id === 'text32') pairId = 'text30';
+
+        else if (id === 'text33') pairId = 'text37';
+        else if (id === 'text34') pairId = 'text38';
+        else if (id === 'text35') pairId = 'text39';
+        else if (id === 'text36') pairId = 'text40';
+        else if (id === 'text37') pairId = 'text33';
+        else if (id === 'text38') pairId = 'text34';
+        else if (id === 'text39') pairId = 'text35';
+        else if (id === 'text40') pairId = 'text36';
+        else if (id === 'text41') pairId = 'text43';
+        else if (id === 'text42') pairId = 'text44';
+        else if (id === 'text43') pairId = 'text41';
+        else if (id === 'text44') pairId = 'text42';
+        else if (id === 'text45') pairId = 'text47';
+        else if (id === 'text46') pairId = 'text48';
+        else if (id === 'text47') pairId = 'text45';
+        else if (id === 'text48') pairId = 'text46';
+
+        else if (id === 'text49') pairId = 'text53';
+        else if (id === 'text50') pairId = 'text54';
+        else if (id === 'text51') pairId = 'text55';
+        else if (id === 'text52') pairId = 'text56';
+        else if (id === 'text53') pairId = 'text49';
+        else if (id === 'text54') pairId = 'text50';
+        else if (id === 'text55') pairId = 'text51';
+        else if (id === 'text56') pairId = 'text52';
+        else if (id === 'text57') pairId = 'text59';
+        else if (id === 'text58') pairId = 'text60';
+        else if (id === 'text59') pairId = 'text57';
+        else if (id === 'text60') pairId = 'text58';
+        else if (id === 'text61') pairId = 'text63';
+        else if (id === 'text62') pairId = 'text64';
+        else if (id === 'text63') pairId = 'text61';
+        else if (id === 'text64') pairId = 'text62';
+
+        else if (id === 'text65') pairId = 'text81';
+        else if (id === 'text66') pairId = 'text82';
+        else if (id === 'text67') pairId = 'text83';
+        else if (id === 'text68') pairId = 'text84';
+        else if (id === 'text69') pairId = 'text65';
+        else if (id === 'text70') pairId = 'text66';
+        else if (id === 'text71') pairId = 'text67';
+        else if (id === 'text72') pairId = 'text68';
+        else if (id === 'text73') pairId = 'text75';
+        else if (id === 'text74') pairId = 'text76';
+        else if (id === 'text75') pairId = 'text73';
+        else if (id === 'text76') pairId = 'text74';
+        else if (id === 'text77') pairId = 'text79';
+        else if (id === 'text78') pairId = 'text80';
+        else if (id === 'text79') pairId = 'text77';
+        else if (id === 'text80') pairId = 'text78';
+
+        else if (id === 'text81') pairId = 'text97';
+        else if (id === 'text82') pairId = 'text98';
+        else if (id === 'text83') pairId = 'text99';
+        else if (id === 'text84') pairId = 'text100';
+        else if (id === 'text85') pairId = 'text81';
+        else if (id === 'text86') pairId = 'text82';
+        else if (id === 'text87') pairId = 'text83';
+        else if (id === 'text88') pairId = 'text84';
+        else if (id === 'text89') pairId = 'text91';
+        else if (id === 'text90') pairId = 'text92';
+        else if (id === 'text91') pairId = 'text89';
+        else if (id === 'text92') pairId = 'text90';
+        else if (id === 'text93') pairId = 'text95';
+        else if (id === 'text94') pairId = 'text96';
+        else if (id === 'text95') pairId = 'text93';
+        else if (id === 'text96') pairId = 'text94';
+
+
+        document.getElementById(pairId).style.transform = '';
+    });
+});
+
+document.getElementById('filterButton').addEventListener('click', function() {
+    var filterMenu = document.getElementById('filterMenu');
+    if (filterMenu.classList.contains('expanded')) {
+        filterMenu.classList.remove('expanded');
+    } else {
+        filterMenu.classList.add('expanded');
+    }
+});
+</script>
+</html>

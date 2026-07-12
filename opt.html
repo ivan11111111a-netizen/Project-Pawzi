@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>Информация о покупке оптом</title>
+    <link rel="stylesheet" href="css/opt.css">
+    <script>
+        function sendData(event) {
+               event.preventDefault(); // Отменяем стандартное поведение формы
+   
+               const textInput = document.getElementById('textInput').value;
+   
+               // Замените 'entry.XXXXXXX' на ваш идентификатор поля
+               const formData = new FormData();
+               formData.append('entry.727567130', textInput); // Замените 'entry.XXXXXXX' на идентификатор вашего поля
+   
+               fetch('https://docs.google.com/forms/d/e/1FAIpQLSdPaJWjSPGWXFMILDB2QSlyWQp5AiL-g8t95Ayxm42Y1xDkSA/formResponse', {
+                   method: 'POST',
+                   body: formData,
+                   mode: 'no-cors' // Важно для отправки данных на Google Форму
+               })
+               
+               .then(response => {
+                   console.log('Успех:', response);
+                   alert('Данные успешно отправлены!');
+                   document.getElementById('textForm').reset(); // Очистить форму после отправки
+               })
+               .catch((error) => {
+                   console.error('Ошибка:', error);
+                   alert('Произошла ошибка при отправке данных.');
+               });
+           }
+           function getQueryParam(param) {
+               const urlParams = new URLSearchParams(window.location.search);
+               return urlParams.get(param);
+           }
+   
+           document.addEventListener('DOMContentLoaded', () => {
+               const category = getQueryParam('category');
+               if (category) {
+                   filterByCategory(category);
+               }
+           
+           window.onscroll = function() {
+                   const button = document.getElementById("scrollToTopBtn");
+                   if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                       button.style.display = "block"; // Показываем кнопку
+                   } else {
+                       button.style.display = "none"; // Скрываем кнопку
+                   }
+               };
+           });
+               function scrollToTop() {
+               window.scrollTo({ top: 0, behavior: 'smooth' });
+           }
+
+           function selectSection(section) {
+        document.getElementById("dropdown-button").textContent = section;
+        document.getElementById("dropdown-content").classList.remove("show");
+    }
+
+    function toggleDropdown() {
+        document.getElementById("dropdown-content").classList.toggle("show");
+    }
+
+    function selectSection(section) {
+        document.getElementById("dropdown-button").textContent = section;
+        document.getElementById("dropdown-content").classList.remove("show");
+    }
+
+    function setInitialButtonText() {
+        const path = window.location.pathname;
+        const page = path.split("/").pop();
+
+        let sectionName = "Выберите раздел";
+
+        switch (page) {
+            case "html.html":
+                sectionName = "Главная";
+                break;
+            case "catalog.html":
+                sectionName = "Каталог";
+                break;
+                case "location.html":
+                sectionName = "Где купить?";
+                break;
+                case "delivery.html":
+                sectionName = "Доставка";
+                break;
+                case "opt.html":
+                sectionName = "Опт";
+                break;
+                case "info.html":
+                sectionName = "О нас";
+                break;
+            default:
+                sectionName = "Выберите раздел";
+        }
+
+        document.getElementById("dropdown-button").textContent = sectionName;
+    }
+
+    // Установить текст кнопки при загрузке страницы
+    window.onload = setInitialButtonText;
+
+    // Закрытие меню при клике вне его
+    window.onclick = function(event) {
+        if (!event.target.matches('button')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            for (var i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+   </script>
+   </head>
+   <body>
+    <div class="boody">
+        <header>
+           <div class="start"><div class="logoback"><div></div></div><h1>PAWZI.AR</h1></div>
+            <nav>
+                <ul class="pc">
+                    <li><a class="home" href="html.html">Главная</a></li>
+                    <li><a class="catalog" href="catalog.html">Каталог</a></li>
+                    <li><a class="location" href="location.html">Где купить?</a></li>
+                    <li><a class="delivery" href="delivery.html">Доставка</a></li>
+                    <li><a class="opt" href="opt.html">Опт</a></li>
+                    <li><a class="info" href="info.html">О нас</a></li>
+                </ul>
+                <ul class="mob">
+                    <li>Выберете раздел:</li>
+                    <li><div class="dropdown">
+                        <button id="dropdown-button" onclick="toggleDropdown()">Выберите раздел</button>
+                        <div id="dropdown-content" class="dropdown-content">
+                            <a href="html.html" onclick="selectSection('Главная')">Главная</a>
+                            <a href="catalog.html" onclick="selectSection('Каталог')">Каталог</a>
+                            <a href="location.html" onclick="selectSection('Где купить?')">Где купить?</a>
+                            <a href="delivery.html" onclick="selectSection('Доставка')">Доставка</a>
+                            <a href="opt.html" onclick="selectSection('Опт')">Опт</a>
+                            <a href="info.html" onclick="selectSection('О нас')">О нас</a>
+                        </div>
+                    </div></li>
+                </ul>
+            </nav>
+        </header>
+        <div class="helper"></div>
+        <button id="scrollToTopBtn" class="scroll-to-top" onclick="scrollToTop()"><em>Наверх</em><span>👆</span></button>
+<h2 class="intro">Информация о покупке оптом</h2>
+    <div class="all">
+        <div class="text">
+    <div class="container">
+        <div class="section">
+            <div class="background lap">
+                <img src="i.webp">
+            </div>
+            <div class="background lap2">
+                <img src="i.webp">
+            </div>
+            <h3>Преимущества покупки оптом</h3>
+            <p>Покупка оптом позволяет вам получать следующие преимущества:</p>
+            <ul>
+                <li>Скидки на объемы</li>
+                <li>Гибкие условия оплаты</li>
+                <li>Приоритетная доставка</li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <div class="background lap">
+                <img src="i.webp">
+            </div>
+            <div class="background lap2">
+                <img src="i.webp">
+            </div>
+            <h3>Минимальный объем заказа</h3>
+            <p>Минимальный объем заказа для оптовых покупателей составляет 10 единиц товара.</p>
+        </div>
+        
+        <div class="section">
+            <div class="background lap">
+                <img src="i.webp">
+            </div>
+            <div class="background lap2">
+                <img src="i.webp">
+            </div>
+            <h3>Как оформить заказ оптом</h3>
+            <p>Для оформления заказа оптом, пожалуйста, свяжитесь с нашим менеджером:</p>
+            <ul>
+                <li>Укажите товары, которые вас интересуют</li>
+                <li>Уточните необходимые объемы и условия</li>
+                <li>Получите индивидуальное предложение</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <div class="background lap">
+                <img src="i.webp">
+            </div>
+            <div class="background lap2">
+                <img src="i.webp">
+            </div>
+            <h3>Контактная информация</h3>
+            <p>Если у вас есть вопросы, пожалуйста, свяжитесь с нашей службой поддержки:</p>
+            <p>Email: support@example.com</p>
+            <p>Телефон: +7 (123) 456-78-90</p>
+        </div>
+
+        <a class="perehod" href="catalog.html">Вернуться в каталог товаров</a>
+    </div>
+</div>
+<div class="images">
+    <div class="image-one one">
+        <div class="pic-one one"></div>
+    </div>
+    <div class="image-two two">
+        <div class="pic-two two"></div>
+    </div>
+    </div>
+    </div>
+    <div class="navigation-panel">
+        <div class="panel">
+            <h3>Навигация</h3>
+            <ul>
+                <li><a href="faq.html">Часто задаваемые вопросы</a></li>
+                <li><a href="delivery-policy.html">Политика доставки</a></li>
+                <li><a href="return-policy.html">Политика обмена и возврата</a></li>
+            </ul>
+        </div>
+        <div class="panel">
+            <h3>Связаться с нами</h3>
+            <ul class="spec">
+                <li>
+                    121212132323323
+                </li>
+                <li>
+                    ayuwauvdawkdadkhabdaw
+                </li>
+                <li>
+                    khasdakhabdbhadjhd
+                </li>
+            </ul>
+        </div>
+        <div class="panel">
+            <h3>Способы оплаты</h3>
+            <div class="pay">
+                <img src="pay\visa@2x.png" alt="">
+                <img src="pay\visadebit@2x.png" alt="">
+                <img src="pay\mastercard@2x.png" alt="">
+                <img src="pay\maestro@2x.png" alt="">
+                <img src="pay\cabal@2x.png" alt="">
+                <img src="pay\cabaldebit@2x.png" alt="">
+                <img src="pay\amex@2x.png" alt="">
+                <img src="pay\argencard@2x.png" alt="">
+                <img src="pay\custom@2x.png" alt="">
+                <img src="pay\cencosud@2x.png" alt="">
+                <img src="pay\pagofacil@2x.png" alt="">
+                <img src="pay\diners@2x.png" alt="">
+                <img src="pay\rapipago@2x.png" alt="">
+                <img src="pay\tarjeta-shopping@2x.png" alt="">
+                <img src="pay\tarjeta-naranja@2x.png" alt="">
+
+            </div>
+            <h3>Способы доставки</h3>
+            <img class="loc" src="pay\1211@2x.png">
+        </div>
+        <div class="panel v">
+            <h3>Информационный бюллетень</h3>
+            <form id="textForm" onsubmit="sendData(event)">
+                <textarea id="textInput" rows="4" cols="50" placeholder="YOUR EMAIL..."></textarea><br>
+                <button id="textInputt" type="submit">Отправить</button>
+            </form>
+        </div>
+        <div class="panel">
+            <h3>Дополнительная информация</h3>
+            <ul>
+                <li><a href="social-media.html">Социальные сети</a></li>
+                <li><a href="security-certification.html">Безопасность и сертификация</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="information">
+        <img class="whatsapp" src="free-icon-whatsapp-3670051.png" alt="WhatsApp">
+    </div> 
+</div>
+</body>
+</html>

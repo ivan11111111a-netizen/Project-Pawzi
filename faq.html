@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <script>
+        function sendData(event) {
+                event.preventDefault(); // Отменяем стандартное поведение формы
+    
+                const textInput = document.getElementById('textInput').value;
+    
+                // Замените 'entry.XXXXXXX' на ваш идентификатор поля
+                const formData = new FormData();
+                formData.append('entry.727567130', textInput); // Замените 'entry.XXXXXXX' на идентификатор вашего поля
+    
+                fetch('https://docs.google.com/forms/d/e/1FAIpQLSdPaJWjSPGWXFMILDB2QSlyWQp5AiL-g8t95Ayxm42Y1xDkSA/formResponse', {
+                    method: 'POST',
+                    body: formData,
+                    mode: 'no-cors' // Важно для отправки данных на Google Форму
+                })
+                
+                .then(response => {
+                    console.log('Успех:', response);
+                    alert('Данные успешно отправлены!');
+                    document.getElementById('textForm').reset(); // Очистить форму после отправки
+                })
+                .catch((error) => {
+                    console.error('Ошибка:', error);
+                    alert('Произошла ошибка при отправке данных.');
+                });
+            }
+            function getQueryParam(param) {
+                const urlParams = new URLSearchParams(window.location.search);
+                return urlParams.get(param);
+            }
+    
+            document.addEventListener('DOMContentLoaded', () => {
+                const category = getQueryParam('category');
+                if (category) {
+                    filterByCategory(category);
+                }
+            
+            window.onscroll = function() {
+                    const button = document.getElementById("scrollToTopBtn");
+                    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                        button.style.display = "block"; // Показываем кнопку
+                    } else {
+                        button.style.display = "none"; // Скрываем кнопку
+                    }
+                };
+            });
+                function scrollToTop() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+            function toggleDropdown() {
+         document.getElementById("dropdown-content").classList.toggle("show");
+     }
+ 
+     function selectSection(section) {
+         document.getElementById("dropdown-button").textContent = section;
+         document.getElementById("dropdown-content").classList.remove("show");
+     }
+ 
+     function setInitialButtonText() {
+         const path = window.location.pathname;
+         const page = path.split("/").pop();
+ 
+         let sectionName = "Выберите раздел";
+ 
+         switch (page) {
+             case "html.html":
+                 sectionName = "Главная";
+                 break;
+             case "catalog.html":
+                 sectionName = "Каталог";
+                 break;
+                 case "location.html":
+                 sectionName = "Где купить?";
+                 break;
+                 case "delivery.html":
+                 sectionName = "Доставка";
+                 break;
+                 case "opt.html":
+                 sectionName = "Опт";
+                 break;
+                 case "info.html":
+                 sectionName = "О нас";
+                 break;
+             default:
+                 sectionName = "Выберите раздел";
+         }
+ 
+         document.getElementById("dropdown-button").textContent = sectionName;
+     }
+ 
+     // Установить текст кнопки при загрузке страницы
+     window.onload = setInitialButtonText;
+ 
+     // Закрытие меню при клике вне его
+     window.onclick = function(event) {
+         if (!event.target.matches('button')) {
+             var dropdowns = document.getElementsByClassName("dropdown-content");
+             for (var i = 0; i < dropdowns.length; i++) {
+                 var openDropdown = dropdowns[i];
+                 if (openDropdown.classList.contains('show')) {
+                     openDropdown.classList.remove('show');
+                 }
+             }
+         }
+     }
+    </script>
+    <style>
+        .faq-section {
+            width: 60%;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .faq-question {
+            background-color: rgb(137, 93, 150);
+            border: none;
+            padding: 15px;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            outline: none;
+            transition: color 0.3s;
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: rgb(255, 255, 255);
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1em;
+        }
+
+        .faq-question:hover {
+            color: rgb(84, 177, 132);
+        }
+
+        .faq-answer {
+            padding: 15px;
+            display: none;
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 1px solid black;
+            margin-bottom: 10px;
+            line-height: 1.5;
+            border-radius: 10px;
+        }
+        button div{
+            padding: 10px 20px;
+        }
+
+        
+        .intro {
+    text-align: center;
+    margin: 20px 0;
+    color: black;
+    font-weight: bold;
+}
+        .start{
+    margin-left: 1em;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin-top: -5px;
+  }
+  .logoback{
+    display: flex;
+    flex-shrink: 0;
+    height: 90px;
+    width: 90px;
+    background-image: linear-gradient(to bottom right,rgb(226, 152, 77), rgb(203, 95, 93),  rgb(137, 93, 150), rgb(245, 203, 67),  rgb(68, 95, 147), rgb(84, 177, 132));
+        -webkit-clip-path: circle(50% at 50% 50%);
+            clip-path: circle(50% at 50% 50%);
+            margin-left: calc(7% - 50px);
+ }
+ .logoback div{
+    width: 80px;
+    height: 80px;
+    background: url('-2147483648_-210702.webp') no-repeat center;
+    background-size: cover;
+    margin: auto;
+ }
+
+h1 {
+    margin-left: 1em;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 35px;
+}
+body{
+    background-color: #fff;
+}
+.boody {
+font-family: Arial, sans-serif;
+background-color: rgba(68, 95, 147, 0.05);
+color: black;
+width: calc(90% - 140px);
+margin: 0 auto;
+padding: 20px;
+border-radius: 5px;
+box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+header {
+position: absolute;
+height: 100px;
+left: 0;
+right: 0;
+top: 0;
+background-color: rgb(68, 95, 147); /* Основной цвет фона */
+color: rgb(255, 255, 255);
+text-align: center;
+padding: 10px 0;
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+nav ul {
+list-style-type: none;
+padding: 0;
+margin: 0;
+display: flex;
+justify-content: center;
+}
+
+nav ul li {
+margin: 0 15px;
+font-size: 20px;
+}
+
+nav ul li a:hover {
+    color: rgb(84, 177, 132);
+}
+
+nav ul li a {
+color: white;
+text-decoration: none;
+transition: color 0.3s;
+}
+
+.scroll-to-top {
+    position: fixed;
+    bottom: 30px;
+    left: 20px;
+    width: 100px ;
+    height: 50px;
+    display: none; /* Скрыта по умолчанию */
+    background-color: rgb(68, 95, 147); /* Цвет фона */
+    color: white; /* Цвет текста */
+    border: none; /* Без рамки */
+    border-radius: 5px; /* Закругленные углы */
+    padding: 10px 15px; /* Отступы */
+    font-size: 1.2em; /* Размер шрифта */
+    cursor: pointer; /* Курсор при наведении */
+    transition: color 0.3s; /* Плавный переход цвета фона */
+    z-index: 9999;
+}
+.scroll-to-top:hover {
+    color: rgb(84, 177, 132);
+}
+
+.helper {
+height: 110px;
+}
+
+
+.navigation-panel {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(203, 95, 93); /* Цвет панели */
+    padding: 20px 50px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: rgb(255, 255, 255);
+    margin-top: 20px;
+    font-size: 1em;
+    align-items: top;
+    flex-wrap: wrap;
+}
+.spec li::before{
+    content: "👉";
+}
+.pay{
+    display: flex;
+    width: 250px;
+    flex-wrap: wrap;
+}
+.pay img{
+    width: 50px;
+    padding: 5px;
+}
+.loc{
+    width: 50px;
+    padding: 5px;
+}
+
+.panel {
+    padding: 10px;
+}
+
+.navigation-panel h3 {
+    margin-bottom: 10px;
+}
+
+.navigation-panel ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.navigation-panel ul li {
+    margin-bottom: 5px;
+}
+
+.navigation-panel a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+}
+
+.navigation-panel a:hover {
+    text-decoration: underline;
+}
+#textForm {
+    background: rgb(203, 95, 93);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 250px;
+}
+textarea {
+    width: 230px;
+    height: 25px;
+    background-color: rgb(137, 93, 150);
+    color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    resize: none;
+    font-size: 18px;
+}
+textarea::placeholder{
+    color: white;
+    opacity: 1;
+}
+
+#textInputt {
+    background-color: rgb(137, 93, 150);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: color 0.3s;
+    width: 252px;
+    border: 1px solid #ccc;
+    }
+    
+    #textInputt:hover {
+        color: rgb(84, 177, 132);
+        font-weight: bold;
+    }
+
+.information {
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    bottom: 30px;
+    right: 30px;
+    background-color: rgb(84, 177, 132);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.whatsapp {
+    width: 50px;
+    height: 50px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    font-size: 20px;
+}
+#dropdown-button {
+    background:none;
+    color: rgb(84, 177, 132);
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: -23px;
+    background-color: rgba(255, 255, 255, 0.9);
+    min-width: 100px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+.dropdown-content a {
+    color: black;
+    padding: 12px 12px;
+    text-decoration: none;
+    display: block;
+    transition: color 0.3s;
+}
+.dropdown-content a:hover {
+    color: rgb(84, 177, 132);;
+}
+.show {
+    display: block;
+}
+
+@media (min-width: 768px) {
+    .mob{
+        display: none;
+    }
+}
+@media (max-width: 767px) {
+    .pc{
+        display: none;
+    }
+}
+
+
+@media (max-width: 1130px) {
+    .boody{
+        width: calc(90% - 110px);
+    }
+    }
+    @media (max-width: 1106px) {
+        .boody{
+            width: calc(90% - 80px);
+        }
+        }
+    @media (max-width: 1065px) {
+            .boody{
+                width: calc(90%);
+            }
+            }
+           
+            @media (max-width: 969px) {
+                .v{
+                    width: 220px;
+                }
+                #textForm {
+                    width: 150px;
+                }
+                textarea {
+                    width: 130px;
+                }
+                #textInputt {
+                    width: 152px;
+                }
+            }
+
+
+            @media (min-width: 1065px) {
+                .scroll-to-top span {
+                    display: none;
+                }
+            }
+            @media (max-width: 1065px) {
+                .scroll-to-top em {
+                    display: none;
+                }
+            }
+
+            @media (max-width: 1130px) {
+                .scroll-to-top {
+                    left: 10px;
+                    width: 80px ;
+                    padding: 5px 5px;
+                    height: 40px;
+                }
+                .information{
+                    right: 20px;
+                }
+            }
+            @media (max-width: 1065px) {
+                .information{
+                    right: 10px;
+                    width: 40px;
+                    height: 40px;
+                }
+                .whatsapp {
+                    width: 40px;
+                    height: 40px;
+                }
+                .scroll-to-top {
+                    left: 10px;
+                    width: 40px;
+                    padding: 0 0;
+                    height: 40px;
+                    border-radius: 50%;
+                }
+                }
+                @media (max-width: 768px) {
+                    .information{
+                        position: absolute;
+                        top: 28px;
+                        right: 30px;
+                    }
+                }
+                @media (max-width: 600px) {
+                    .scroll-to-top {
+                        left: 7px;
+                        bottom: 15px;
+                    }
+                }
+    </style>
+</head>
+<body>
+<div class="boody">
+    <header>
+        <div class="start"><div class="logoback"><div></div></div><h1>PAWZI.AR</h1></div>
+         <nav>
+             <ul class="pc">
+                 <li><a class="home" href="html.html">Главная</a></li>
+                 <li><a class="catalog" href="catalog.html">Каталог</a></li>
+                 <li><a class="location" href="location.html">Где купить?</a></li>
+                 <li><a class="delivery" href="delivery.html">Доставка</a></li>
+                 <li><a class="opt" href="opt.html">Опт</a></li>
+                 <li><a class="info" href="info.html">О нас</a></li>
+             </ul>
+             <ul class="mob">
+                 <li>Выберете раздел:</li>
+                 <li><div class="dropdown">
+                     <button id="dropdown-button" onclick="toggleDropdown()">Выберите раздел</button>
+                     <div id="dropdown-content" class="dropdown-content">
+                         <a href="html.html" onclick="selectSection('Главная')">Главная</a>
+                         <a href="catalog.html" onclick="selectSection('Каталог')">Каталог</a>
+                         <a href="location.html" onclick="selectSection('Где купить?')">Где купить?</a>
+                         <a href="delivery.html" onclick="selectSection('Доставка')">Доставка</a>
+                         <a href="opt.html" onclick="selectSection('Опт')">Опт</a>
+                         <a href="info.html" onclick="selectSection('О нас')">О нас</a>
+                     </div>
+                 </div></li>
+             </ul>
+         </nav>
+     </header>
+     <div class="helper"></div>
+     <button id="scrollToTopBtn" class="scroll-to-top" onclick="scrollToTop()"><em>Наверх</em><span>👆</span></button>
+     <div class="intro">
+         <h2 class="main">Часто задаваемые вопросы</h2>
+     </div>
+<div class="faq-section">
+    <button class="faq-question"><div>¿Qué snack es ideal para mi mascota?</div><div>👇</div></button>
+    <div class="faq-answer">
+        <p><span>PREMIO NUTRITIVO</span><br>
+            Hechos con mucho amor, especialmente para mimar y premiar a tu Perri Amigo de una manera saludable! Nuestros Premios Nutritivos funcionan como un mimo qué fortalece su bienestar y vinculo de amor a través de nuestros snacks.<br><br>
+            
+            <span>TRAINING NUTRITIVO</span><br>
+            Entrenamientos más felices junto a Growis. ¡Motiva el aprendizaje y premia a tu perri amigo de una manera rica, natural y nutritiva! Una actividad recreativa ligada a una recompensa nutritiva de la mano de nuestros Training Snack, es una gran opcion para motivar los entrenamientos y que sean más felices.<br><br>
+            
+            <span>DENTAL NUTRITIVO</span><br>
+            Bocas más sanas. ¡Mejora, cuida y fortalece la salud bucal de dientes, encías y ligamentos de una forma 100% natural! Al proporcionar a tu perriamigo las herramientas adecuadas desde una edad temprana, podes evitar hábitos de masticación inadecuados, lograr liberar el estrés, estimular las encias, ligamentos y musculos eliminando el sarro.<br><br>
+            
+            <span>CRUNCH NUTRITIVO</span><br>
+            Pelaje más brillante. ¡Aportan proteínas aportan proteínas y vitaminas esenciales para complementar la dieta diaria! Ideal para los campeones que necesitan un extra de energía o perriamigas en etapa de lactancia.</p>
+    </div>
+
+    <button class="faq-question"><div>¿Cómo comienzo a incorporar los snacks growis en la dieta de mi mascota?</div><div>👇</div></button>
+    <div class="faq-answer">
+        <p>Al incorporar un nuevo snack a la dieta de nuestras mascotas, debemos asegurarnos de que sea de una forma cuidada y gradual para no generar cambios bruscos en la misma. Nuestro consejo, es que comiences incorporando una unidad de alguno de nuestros snacks como pueden ser los chips, aireados, palitos, mini hígados. Trozados en pedacitos o mezclados en su comida, así conseguiremos que tu perriamigo vaya incorporando sabores poco a poco, y su organismo pueda ir asimilando el nuevo alimento. Esta opción es ideal para perros con un sistema gástrico delicado. Otra manera sería darle solo 1 snack por día durante una semana. Siempre recomendamos que las primeras veces el consumo del snack sea bajo supervisión del humano responsable para que puedan asegurarse de que la mascota lo mastica sin problema alguno.</p>
+    </div>
+
+    <button class="faq-question"><div>¿Los snacks son aptos para perros con insuficiencia renal?</div><div>👇</div></button>
+    <div class="faq-answer">
+        <p>Es una consulta frecuente. La respuesta es sí, se le pueden suministrar Growis a perros con afecciones renales. Uno de los nutrientes a cuidar en estos casos es el Sodio, importante en el equilibrio intra y extracelular, en los tejidos muscular y nervioso. Si bien los requerimientos son bajos, se debe evitar el exceso de Sodio, ya que las cantidades superiores a las requeridas son excretadas por la orina luego del proceso de filtración por los riñones. En nuestros productos no existe la inclusión de Cloruro de Sodio, como si sucede en algunos alimentos para mascotas. En nuestro caso su presencia es la natural, presente en los tejidos animales de cada producto. El nivel de Proteínas es el otro factor nutricional que limitar. El nivel de proteínas de las golosinas, si bien es alto, cuenta con la ventaja de ser un complemento alimenticio y un entretenimiento, por lo cual, su consumo resulta ser hasta diez veces más lento que el de los alimentos, por lo cual su proceso digestivo también insume mayor tiempo, con más liberación y absorción de aminoácidos y menor trabajo renal. Los productos Growis, resultan beneficiosos frente a afecciones renales, cardiacas y de diabetes, solo debemos mantener un saludable equilibrio con la dieta total diaria, sin provocar cambios bruscos. Como siempre sugerimos consulte con su profesional veterinario las cantidades a suministrar a sus mascotas.</p>
+    </div>
+
+    <button class="faq-question"><div>¿Cuánta vida útil tienen los snacks?</div><div>👇</div></button>
+    <div class="faq-answer">
+        <p>Los snacks tienen una vida útil de 2 años, siempre y cuando los mismos no hayan estado en contacto con la saliva de la mascota, y sean conservados en un espacio seco y libre de humedad para su correcta conservación. Los paquetes son una gran opción para conservar los snacks en correctas condiciones, los mismos son zipper oddor free y resguardan el producto de humedad y la intemperie, a demás de que al guardarlos aíslan el olor de los snacks. En caso de tirar el paquete y no saber cómo guardarlos, nuestra recomendación es conservarlos en un túper limpio y seco en algún lugar libre de humedad. Así se podrá mantener correctamente el estado de deshidratado y evitaremos que bacterias y microorganismos se reproduzcan echando a perder el snack.</p>
+    </div>
+
+    <button class="faq-question"><div>¿Por qué son absolutamente naturales?</div><div>👇</div></button>
+    <div class="faq-answer">
+        <p>¡Nuestros snacks deshidratados masticables no contienen ningún tipo de agregado! Los mismos no son intervenidos por ningún tipo de químico, conservante, aditivo, aromatizante o saborizante, simplemente se deshidratan con hornos de alta tecnología, única en su tipo, que nos permite que los productos liberen humedad, y conserven los nutrientes esenciales de cada menudencia de manera natural. El proceso cuenta con varios puntos de control y seguimiento, para conseguir así, un snack nutritivo, rico en fibras y proteínas que conserve la forma y el olor que despierta en cada mascota su instinto canino.</p>
+    </div>
+
+</div>
+<div class="navigation-panel">
+    <div class="panel">
+        <h3>Навигация</h3>
+        <ul>
+            <li><a href="faq.html">Часто задаваемые вопросы</a></li>
+            <li><a href="delivery-policy.html">Политика доставки</a></li>
+            <li><a href="return-policy.html">Политика обмена и возврата</a></li>
+        </ul>
+    </div>
+    <div class="panel">
+        <h3>Связаться с нами</h3>
+        <ul class="spec">
+            <li>
+                121212132323323
+            </li>
+            <li>
+                ayuwauvdawkdadkhabdaw
+            </li>
+            <li>
+                khasdakhabdbhadjhd
+            </li>
+        </ul>
+    </div>
+    <div class="panel">
+        <h3>Способы оплаты</h3>
+        <div class="pay">
+            <img src="pay\visa@2x.png" alt="">
+            <img src="pay\visadebit@2x.png" alt="">
+            <img src="pay\mastercard@2x.png" alt="">
+            <img src="pay\maestro@2x.png" alt="">
+            <img src="pay\cabal@2x.png" alt="">
+            <img src="pay\cabaldebit@2x.png" alt="">
+            <img src="pay\amex@2x.png" alt="">
+            <img src="pay\argencard@2x.png" alt="">
+            <img src="pay\custom@2x.png" alt="">
+            <img src="pay\cencosud@2x.png" alt="">
+            <img src="pay\pagofacil@2x.png" alt="">
+            <img src="pay\diners@2x.png" alt="">
+            <img src="pay\rapipago@2x.png" alt="">
+            <img src="pay\tarjeta-shopping@2x.png" alt="">
+            <img src="pay\tarjeta-naranja@2x.png" alt="">
+
+        </div>
+        <h3>Способы доставки</h3>
+        <img class="loc" src="pay\1211@2x.png">
+    </div>
+    <div class="panel v">
+        <h3>Информационный бюллетень</h3>
+        <form id="textForm" onsubmit="sendData(event)">
+            <textarea id="textInput" rows="4" cols="50" placeholder="YOUR EMAIL..."></textarea><br>
+            <button id="textInputt" type="submit">Отправить</button>
+        </form>
+    </div>
+    <div class="panel">
+        <h3>Дополнительная информация</h3>
+        <ul>
+            <li><a href="social-media.html">Социальные сети</a></li>
+            <li><a href="security-certification.html">Безопасность и сертификация</a></li>
+        </ul>
+    </div>
+</div>
+<div class="information">
+    <img class="whatsapp" src="free-icon-whatsapp-3670051.png" alt="WhatsApp">
+</div>
+</div>
+<script>
+    document.querySelectorAll('.faq-question').forEach(button => {
+        button.addEventListener('click', () => {
+            const answer = button.nextElementSibling;
+            answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+        });
+    });
+</script>
+
+</body>
+</html>
